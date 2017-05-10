@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.3//EN" "http://www.web3d.org/specifications/x3d-3.3.dtd">
+
+<!--
+  Test of backslashes in X3D XML endoding, in MFString and SFString.
+  The SFString test uses a Script with JavaScript,
+  bits inspired by http://doc.instantreality.org/tutorial/implementing-script-nodes-in-javascript/
+-->
+
+<X3D version="3.3" profile="Interchange" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="http://www.web3d.org/specifications/x3d-3.3.xsd">
+<head>
+</head>
+<Scene>
+  <Viewpoint position="0 0 40" />
+
+  <Transform>
+    <Shape>
+      <Appearance> <Material diffuseColor="1 1 0" /> </Appearance>
+      <Text DEF='MyText' string='"Backslash and double quote inside an MFString: \"" "Two backslashes inside an MFString: \\" "Click on a Sphere for an SFString test!"'>
+        <FontStyle justify='"MIDDLE"' />
+      </Text>
+    </Shape>
+  </Transform>
+
+  <Script DEF='MyScript'>
+    <field accessType='initializeOnly' name='myString1' type='SFString' value='Backslash and double quote inside an SFString: \"'/>
+    <field accessType='initializeOnly' name='myString2' type='SFString' value='Two backslashes inside an SFString: \\'/>
+    <field accessType='inputOnly' name='isActive' type='SFBool'/>
+    <field accessType='outputOnly' name='color_changed' type='SFColor'/>
+    <field accessType='outputOnly' name='text_changed' type='MFString'/>
+    <![CDATA[javascript:
+function isActive(value)
+{
+  if (value) {
+    color_changed = new SFColor(0.5, 0.5, 1); // light blue
+
+    var new_text_changed = new MFString();
+    new_text_changed[0] = myString1;
+    new_text_changed[1] = myString2;
+
+    text_changed = new_text_changed;
+  }
+}
+    ]]>
+  </Script>
+
+  <Transform translation="0 5 0">
+    <Shape>
+      <Appearance> <Material DEF="SphereMaterial" diffuseColor="1 0 0" /> </Appearance>
+      <Sphere radius="3" />
+    </Shape>
+    <TouchSensor DEF='MyTouchSensor' />
+  </Transform>
+
+  <ROUTE fromNode='MyTouchSensor' fromField='isActive' toNode='MyScript' toField='isActive'/>
+  <ROUTE fromNode='MyScript' fromField='color_changed' toNode='SphereMaterial' toField='set_diffuseColor'/>
+  <ROUTE fromNode='MyScript' fromField='text_changed' toNode='MyText' toField='set_string'/>
+</Scene>
+</X3D>
