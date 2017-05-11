@@ -1,0 +1,13 @@
+#X3D V3.2 utf8
+PROFILE Interactive
+
+Viewpoint { position 0 0 40 }
+
+Shape {
+  appearance Appearance { material Material { diffuseColor 1 1 0 } }
+  geometry Text {
+    string "One line
+Another line
+Yet another line"
+  }
+}
