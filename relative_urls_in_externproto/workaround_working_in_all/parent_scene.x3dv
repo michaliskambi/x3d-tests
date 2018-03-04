@@ -1,0 +1,8 @@
+#X3D V3.2 utf8
+PROFILE Interchange
+
+EXTERNPROTO MyGeometry [
+  inputOutput SFNode textureNode
+] [ "textures/prototype.x3dv#MyGeometry" ]
+
+MyGeometry { textureNode ImageTexture { url "textures/texture.png" } }

@@ -1,0 +1,7 @@
+#X3D V3.2 utf8
+PROFILE Interchange
+
+EXTERNPROTO MyGeometry [
+] [ "textures/prototype.x3dv#MyGeometry" ]
+
+MyGeometry { }
