@@ -7,8 +7,8 @@ Various X3D tests.
 Michalis maintains another, large collection of X3D tests inside the Castle Game Engine "demo models":
 
 - Get them from https://github.com/castle-engine/demo-models
-- See https://castle-engine.sourceforge.io/ about Castle Game Engine.
-- See https://castle-engine.sourceforge.io/view3dscene.php about view3dscene, my X3D browser.
+- See https://castle-engine.io/ about Castle Game Engine.
+- See https://castle-engine.io/view3dscene.php about view3dscene, my X3D browser.
 
 But these "demo models" grew into a large collection, developed for various purposes related with Castle Game Engine (demos, CGE inter-operability tests, CGE conformance tests...).
 
