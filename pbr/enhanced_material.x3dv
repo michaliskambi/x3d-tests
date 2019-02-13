@@ -24,7 +24,7 @@ Shape {
         0 1 0,
       ]
     }
-    texCoord
+    texCoord [
       TextureCoordinate {
         channel 123
         point [
