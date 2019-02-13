@@ -1,0 +1,43 @@
+#X3D V3.2 utf8
+PROFILE Interactive
+
+Shape {
+  appearance Appearance {
+    material Material {
+      diffuseTexture ImageTexture { url "my_diffuse.png" }
+      diffuseTextureCoordinateChannel 123
+      specularTexture ImageTexture { url "my_specular.png" }
+      specularTextureCoordinateChannel 666
+    }
+    textureTransform TextureTransform {
+      channel 123
+      translation 0.5 0.5
+    }
+  }
+  geometry IndexedFaceSet {
+    coordIndex [ 0 1 2 3 ]
+    coord Coordinate {
+      point [
+        0 0 0,
+        1 0 0,
+        1 1 0,
+        0 1 0,
+      ]
+    }
+    texCoord
+      TextureCoordinate {
+        channel 123
+        point [
+          0 0 0,
+          4 0 0,
+          4 4 0,
+          0 4 0,
+        ]
+      }
+      TextureCoordinateGenerator {
+        channel 666
+        mode "COORDS"
+      }
+    ]
+  }
+}
