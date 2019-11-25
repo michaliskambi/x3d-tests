@@ -1,18 +1,35 @@
-#X3D V3.2 utf8
+#X3D V4.0 utf8
 PROFILE Interactive
+# TODO: Specify proper profile/component levels here.
+
+# Simple demo of new Material fields to indicate textures in X3D 4.
 
 Shape {
   appearance Appearance {
     material Material {
       diffuseTexture ImageTexture { url "my_diffuse.png" }
-      diffuseTextureCoordinateChannel 123
+      # diffuse texture will use the explicit TextureCoordinate node defined below,
+      # and the TextureTransform node with translation defined below.
+      diffuseTextureChannel 0
+
       specularTexture ImageTexture { url "my_specular.png" }
-      specularTextureCoordinateChannel 666
+      # specular texture will use the TextureCoordinateGenerator node defined below,
+      # and no additional texture coordinate transformation will be done.
+      specularTextureChannel 1
     }
+
     textureTransform TextureTransform {
-      channel 123
       translation 0.5 0.5
     }
+    # Above value of Appearance.textureTransform is exactly equivalent to
+    # a MultiTextureTransform with a single child:
+    # textureTransform MultiTextureTransform {
+    #   textureTransform [
+    #     TextureTransform {
+    #       translation 0.5 0.5
+    #     }
+    #   ]
+    # }
   }
   geometry IndexedFaceSet {
     coordIndex [ 0 1 2 3 ]
@@ -26,7 +43,6 @@ Shape {
     }
     texCoord [
       TextureCoordinate {
-        channel 123
         point [
           0 0 0,
           4 0 0,
@@ -35,7 +51,6 @@ Shape {
         ]
       }
       TextureCoordinateGenerator {
-        channel 666
         mode "COORDS"
       }
     ]
