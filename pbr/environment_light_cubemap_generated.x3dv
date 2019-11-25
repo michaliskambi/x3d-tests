@@ -1,0 +1,19 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+# TODO: Specify proper profile/component levels here.
+
+# Demo of EnvironmentLight using GeneratedCubeMapTexture.
+#
+# *This will be crazy*, as texture updated in one step will be used to light
+# the shapes in next step, eventually causing recursive reflections.
+# Or it will not work (in case of CGE), as GeneratedCubeMapTexture must be inside Shape.
+#
+# TODO: Prepare more sane example, where GeneratedCubeMapTexture is done
+# inside some shape in a closed room,
+# and only used to lit another room.
+
+EnvironmentLight {
+  specularImage GeneratedCubeMapTexture { }
+}
+
+Inline { url "environment_light_geometry.x3dv" }

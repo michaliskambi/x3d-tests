@@ -1,0 +1,30 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+# TODO: Specify proper profile/component levels here.
+
+# Demo of EnvironmentLight using ComposedCubeMapTexture.
+
+# We define Background to visualize the cubemap explicitly.
+# This Background definition *does not* affect the shapes look, of course,
+# we don't change existing Background behaviour at all.
+Background {
+  backUrl   "images/cubemaps/sky_lake_back.png"
+  bottomUrl "images/cubemaps/sky_lake_bottom.png"
+  frontUrl  "images/cubemaps/sky_lake_front.png"
+  leftUrl   "images/cubemaps/sky_lake_left.png"
+  rightUrl  "images/cubemaps/sky_lake_right.png"
+  topUrl    "images/cubemaps/sky_lake_top.png"
+}
+
+EnvironmentLight {
+  specularImage ComposedCubeMapTexture {
+    back   ImageTexture { url "images/cubemaps/sky_lake_back.png" }
+    bottom ImageTexture { url "images/cubemaps/sky_lake_bottom.png" }
+    front  ImageTexture { url "images/cubemaps/sky_lake_front.png" }
+    left   ImageTexture { url "images/cubemaps/sky_lake_left.png" }
+    right  ImageTexture { url "images/cubemaps/sky_lake_right.png" }
+    top    ImageTexture { url "images/cubemaps/sky_lake_top.png" }
+  }
+}
+
+Inline { url "environment_light_geometry.x3dv" }

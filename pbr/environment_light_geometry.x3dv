@@ -1,0 +1,59 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+# TODO: Specify proper profile/component levels here.
+
+# A few shapes, used by the other environment_light_*.x3dv files.
+# This file is boring, we just make shapes with default Material or PhysicalMaterial.
+
+# some geometry with Phong materials -----------------------------------------
+
+Transform {
+  translation 0 0 0
+  children Shape {
+    appearance Appearance { material Material { } }
+    geometry Box { }
+  }
+}
+Transform {
+  translation 2 0 0
+  children Shape {
+    appearance Appearance { material Material { } }
+    geometry Sphere { }
+  }
+}
+Transform {
+  translation 4 0 0
+  children Shape {
+    appearance Appearance { material Material { } }
+    geometry Cone { }
+  }
+}
+
+# some geometry with PBR materials -----------------------------------------
+
+Transform {
+  translation 0 3 0
+  children [
+    Transform {
+      translation 0 0 0
+      children Shape {
+        appearance Appearance { material PhysicalMaterial { } }
+        geometry Box { }
+      }
+    }
+    Transform {
+      translation 2 0 0
+      children Shape {
+        appearance Appearance { material PhysicalMaterial { } }
+        geometry Sphere { }
+      }
+    }
+    Transform {
+      translation 4 0 0
+      children Shape {
+        appearance Appearance { material PhysicalMaterial { } }
+        geometry Cone { }
+      }
+    }
+  ]
+}
