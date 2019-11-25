@@ -1,0 +1,19 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+
+# This is invalid, using MultiTexture within MultiTexture.
+# In X3Dv4, such invalidity should be possible to detect using XML validation,
+# thanks to introduction of new abstact type X3DTextureSingleNode.
+
+Shape {
+  appearance Appearance {
+    texture MultiTexture {
+      texture [
+        ImageTexture { }
+        MultiTexture { }
+      ]
+    }
+  }
+  geometry Box {
+  }
+}
