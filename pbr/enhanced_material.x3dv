@@ -7,15 +7,20 @@ PROFILE Interactive
 Shape {
   appearance Appearance {
     material Material {
-      diffuseTexture ImageTexture { url "my_diffuse.png" }
+      diffuseTexture ImageTexture { url "images/synthetic_metal_textures_with_specular_maps/synthetic_metal_06_diffuse.png" }
       # diffuse texture will use the explicit TextureCoordinate node defined below,
       # and the TextureTransform node with translation defined below.
       diffuseTextureChannel 0
 
-      specularTexture ImageTexture { url "my_specular.png" }
+      specularTexture ImageTexture { url "images/synthetic_metal_textures_with_specular_maps/synthetic_metal_06_specular.png" }
       # specular texture will use the TextureCoordinateGenerator node defined below,
       # and no additional texture coordinate transformation will be done.
+      # This change is just to test the browser (the actual images are not prepared for it,
+      # they would look better if both diffuse/specular/normal maps mapping were equal).
       specularTextureChannel 1
+
+      normalTexture ImageTexture { url "images/synthetic_metal_textures_with_specular_maps/synthetic_metal_06_normal.png" }
+      normalTextureChannel 0
     }
 
     textureTransform TextureTransform {
