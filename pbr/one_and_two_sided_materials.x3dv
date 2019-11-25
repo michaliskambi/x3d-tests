@@ -1,0 +1,234 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+# TODO: Specify proper profile/component levels here.
+
+# Demo of various options of GenericTwoSidedMaterial
+# when combined with Material and PhysicalMaterial.
+
+# one-sided ------------------------------------------------------------------
+
+Transform {
+  translation 0 0 0
+  children [
+    Transform {
+      translation 0 0 0
+      children [
+        Shape {
+          appearance Appearance {
+            # Phong yellowish one-sided material
+            material Material {
+              diffuseColor 1 1 0
+            }
+          }
+          geometry DEF MyGeometry IndexedFaceSet {
+            solid FALSE
+            coordIndex [ 0 1 2 3 ]
+            coord Coordinate {
+              point [
+                0 0 0,
+                1 0 0,
+                1 1 0,
+                0 1 0,
+              ]
+            }
+          }
+        }
+      ]
+    }
+
+    Transform {
+      translation 2 0 0
+      children [
+        Shape {
+          appearance Appearance {
+            # PBR yellowish one-sided material
+            material PhysicalMaterial {
+              baseColor 1 1 0
+            }
+          }
+          geometry USE MyGeometry
+        }
+      ]
+    }
+
+    Transform {
+      translation 4 0 0
+      children [
+        Shape {
+          appearance Appearance {
+            # unlit yellowish one-sided material
+            material Material {
+              ambientIntensity 0
+              diffuseColor 0 0 0
+              specularColor 0 0 0
+              emissiveColor 1 1 0
+            }
+          }
+          geometry USE MyGeometry
+        }
+      ]
+    }
+
+    Transform {
+      translation 6 0 0
+      children [
+        Shape {
+          appearance Appearance {
+            # unlit pure white one-sided material
+            material NULL # this is the default value of Appearance.material, actually
+          }
+          geometry USE MyGeometry
+        }
+      ]
+    }
+  ]
+}
+
+# two-sided, both sides look the same -----------------------------------------------
+
+Transform {
+  translation 0 2 0
+  children [
+    Transform {
+      translation 0 0 0
+      children [
+        Shape {
+          appearance Appearance {
+            # Phong yellowish two-sided material
+            material GenericTwoSidedMaterial {
+              front Material {
+                diffuseColor 1 1 0
+              }
+            }
+          }
+          geometry USE MyGeometry
+        }
+      ]
+    }
+
+    Transform {
+      translation 2 0 0
+      children [
+        Shape {
+          appearance Appearance {
+            # PBR yellowish two-sided material
+            material GenericTwoSidedMaterial {
+              front PhysicalMaterial {
+                baseColor 1 1 0
+              }
+            }
+          }
+          geometry USE MyGeometry
+        }
+      ]
+    }
+
+    Transform {
+      translation 4 0 0
+      children [
+        Shape {
+          appearance Appearance {
+            # unlit yellowish one-sided material
+            material GenericTwoSidedMaterial {
+              front Material {
+                ambientIntensity 0
+                diffuseColor 0 0 0
+                specularColor 0 0 0
+                emissiveColor 1 1 0
+              }
+            }
+          }
+          geometry USE MyGeometry
+        }
+      ]
+    }
+
+    Transform {
+      translation 6 0 0
+      children [
+        Shape {
+          appearance Appearance {
+            # unlit pure white two-sided material
+            material GenericTwoSidedMaterial {
+              front NULL # this is the default value of GenericTwoSidedMaterial.front, actually
+            }
+          }
+          geometry USE MyGeometry
+        }
+      ]
+    }
+  ]
+}
+
+# two-sided, different look of two sides -----------------------------------------------
+
+Transform {
+  translation 0 4 0
+  children [
+    Transform {
+      translation 0 0 0
+      children [
+        Shape {
+          appearance Appearance {
+            # Phong yellowish/blue two-sided material
+            material GenericTwoSidedMaterial {
+              front Material {
+                diffuseColor 1 1 0
+              }
+              back Material {
+                diffuseColor 0 0 1
+              }
+            }
+          }
+          geometry USE MyGeometry
+        }
+      ]
+    }
+
+    Transform {
+      translation 2 0 0
+      children [
+        Shape {
+          appearance Appearance {
+            # PBR yellowish/blue two-sided material
+            material GenericTwoSidedMaterial {
+              front PhysicalMaterial {
+                baseColor 1 1 0
+              }
+              back PhysicalMaterial {
+                baseColor 0 0 1
+              }
+            }
+          }
+          geometry USE MyGeometry
+        }
+      ]
+    }
+
+    Transform {
+      translation 4 0 0
+      children [
+        Shape {
+          appearance Appearance {
+            # unlit yellowish/blue one-sided material
+            material GenericTwoSidedMaterial {
+              front Material {
+                ambientIntensity 0
+                diffuseColor 0 0 0
+                specularColor 0 0 0
+                emissiveColor 1 1 0
+              }
+              front Material {
+                ambientIntensity 0
+                diffuseColor 0 0 0
+                specularColor 0 0 0
+                emissiveColor 0 0 1
+              }
+            }
+          }
+          geometry USE MyGeometry
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+# TODO: Specify proper profile/component levels here.
+
+# Simple demo of PhysicalMaterial.
+
+Shape {
+  appearance Appearance {
+    material PhysicalMaterial {
+      baseColor 1 1 0
+      baseTexture ImageTexture { url "images/test_texture.png" }
+      baseTextureChannel 0
+
+      normalTexture ImageTexture { url "images/synthetic_metal_textures_with_specular_maps/synthetic_metal_06_normal.png" }
+      normalTextureChannel 0
+    }
+    textureTransform TextureTransform {
+      translation 0.5 0.5
+    }
+  }
+  geometry IndexedFaceSet {
+    coordIndex [ 0 1 2 3 ]
+    coord Coordinate {
+      point [
+        0 0 0,
+        1 0 0,
+        1 1 0,
+        0 1 0,
+      ]
+    }
+    texCoord MultiTextureCoordinate {
+      texCoord [
+        TextureCoordinate {
+          point [
+            0 0 0,
+            4 0 0,
+            4 4 0,
+            0 4 0,
+          ]
+        }
+        # this will be ignored
+        TextureCoordinateGenerator {
+          mode "COORDS"
+        }
+      ]
+    }
+  }
+}

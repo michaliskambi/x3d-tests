@@ -46,18 +46,20 @@ Shape {
         0 1 0,
       ]
     }
-    texCoord [
-      TextureCoordinate {
-        point [
-          0 0 0,
-          4 0 0,
-          4 4 0,
-          0 4 0,
-        ]
-      }
-      TextureCoordinateGenerator {
-        mode "COORDS"
-      }
-    ]
+    texCoord MultiTextureCoordinate {
+      texCoord [
+        TextureCoordinate {
+          point [
+            0 0 0,
+            4 0 0,
+            4 4 0,
+            0 4 0,
+          ]
+        }
+        TextureCoordinateGenerator {
+          mode "COORDS"
+        }
+      ]
+    }
   }
 }
