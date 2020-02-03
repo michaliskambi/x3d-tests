@@ -8,10 +8,10 @@ Shape {
   appearance Appearance {
     material PhysicalMaterial {
       baseColor 1 1 0
-      baseTexture ImageTexture { url "images/test_texture.png" }
+      baseTexture ImageTexture { url "../images/test_texture.png" }
       baseTextureChannel 0
 
-      normalTexture ImageTexture { url "images/synthetic_metal_textures_with_specular_maps/synthetic_metal_06_normal.png" }
+      normalTexture ImageTexture { url "../images/synthetic_metal_textures_with_specular_maps/synthetic_metal_06_normal.png" }
       normalTextureChannel 0
     }
     textureTransform TextureTransform {

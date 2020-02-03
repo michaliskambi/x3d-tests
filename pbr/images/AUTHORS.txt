@@ -3,3 +3,12 @@ pbr-test* is used on https://github.com/michaliskambi/x3d-tests/wiki/What-is-PBR
   It was made using XSeen, which is built on top of THREE.js.
   By Leonard Daly.
   An interactive version of it is available: http://xseen.org/XSeen/tests/pbr-envMap.html
+
+leaf* textures based on
+  "Maple leaf on concrete" photo by Martin LaBar,
+  http://flickr.com/photos/martinlabar/2072745893/
+
+  License
+  Attribution-NonCommercial 2.0 Generic (CC BY-NC 2.0)
+  https://creativecommons.org/licenses/by-nc/2.0/
+  TODO: we need something more permissive for X3D testing (allow also commercial).

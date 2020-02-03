@@ -1,0 +1,134 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+# TODO: Specify proper profile/component levels here.
+
+# Test normalTexture and Material.
+
+# ----------------------------------------------------------------------------
+# Prototype: row of geometry with equal Appearance
+
+PROTO Row [
+  initializeOnly SFNode appearance NULL
+] {
+  Group {
+    children [
+      Shape {
+        appearance IS appearance
+        geometry Cone { }
+      }
+
+      Transform {
+        translation 3 0 0
+        children Shape {
+          appearance IS appearance
+          geometry Box { }
+        }
+      }
+
+      Transform {
+        translation 6 0 0
+        children Shape {
+          appearance IS appearance
+          geometry Sphere { }
+        }
+      }
+
+      Transform {
+        translation 9 0 0
+        children Shape {
+          appearance IS appearance
+          geometry IndexedFaceSet {
+            solid FALSE
+            coord Coordinate { point [-1 -1 0, 1 -1 0, 1 1 0, -1 1 0] }
+            coordIndex [0, 1, 2, 3]
+          }
+        }
+      }
+    ]
+  }
+}
+
+# ----------------------------------------------------------------------------
+# Row: No texture
+
+Row {
+  appearance Appearance {
+    material Material {
+    }
+  }
+}
+
+# ----------------------------------------------------------------------------
+# Row: Diffuse texture
+
+Transform {
+  translation 0 4 0
+  children Row {
+    appearance Appearance {
+      material Material {
+        diffuseTexture DEF MyDiffuseTex ImageTexture {
+          url "../images/leaf.png"
+        }
+      }
+    }
+  }
+}
+
+# ----------------------------------------------------------------------------
+# Row: Diffuse texture and normalmap
+
+Transform {
+  translation 0 8 0
+  children Row {
+    appearance Appearance {
+      material Material {
+        diffuseTexture USE MyDiffuseTex
+        normalTexture DEF MyNormalTex ImageTexture {
+          url "../images/leaf_normal_map.png"
+        }
+      }
+    }
+  }
+}
+
+# ----------------------------------------------------------------------------
+# Row: Diffuse texture and normalmap, with tex coord transformation
+
+Transform {
+  translation 0 12 0
+  children Row {
+    appearance Appearance {
+      material Material {
+        diffuseTexture USE MyDiffuseTex
+        normalTexture USE MyNormalTex
+      }
+      textureTransform TextureTransform { scale 2 2 }
+    }
+  }
+}
+
+# ----------------------------------------------------------------------------
+# Row: Diffuse texture and normalmap, with partially transparent material
+
+Transform {
+  translation 0 16 0
+  children [
+    Row {
+      appearance Appearance {
+        material Material {
+          diffuseTexture USE MyDiffuseTex
+          normalTexture USE MyNormalTex
+          transparency 0.5
+        }
+      }
+    }
+    DEF BackWall Shape {
+      appearance Appearance { material Material { } }
+      geometry IndexedFaceSet {
+        solid FALSE
+        coord Coordinate { point [-1 -1 -2, 10 -1 -2, 10 1 -2, -1 1 -2] }
+        coordIndex [0, 1, 2, 3]
+      }
+    }
+  ]
+}
