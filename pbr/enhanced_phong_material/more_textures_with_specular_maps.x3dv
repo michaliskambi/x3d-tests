@@ -1,0 +1,200 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+
+NavigationInfo { headlight FALSE }
+PointLight {
+  location 1 0 2
+}
+
+Transform {
+  children Shape {
+    appearance Appearance {
+      material Material {
+        diffuseTexture
+          ImageTexture { url "../images/more_textures_with_specular_maps/pattern_240/diffuse.png" }
+        normalTexture
+          ImageTexture { url "../images/more_textures_with_specular_maps/pattern_240/normal.png" }
+        specularTexture
+          ImageTexture { url "../images/more_textures_with_specular_maps/pattern_240/specular.png" }
+        specularColor 1 1 1
+      }
+    }
+    geometry Box {
+    }
+  }
+}
+
+Transform {
+  translation 3 0 0
+  children Shape {
+    appearance Appearance {
+      material Material {
+        diffuseTexture
+          ImageTexture { url "../images/more_textures_with_specular_maps/pattern_241/diffuse.png" }
+        normalTexture
+          ImageTexture { url "../images/more_textures_with_specular_maps/pattern_241/normal.png" }
+        specularTexture
+          ImageTexture { url "../images/more_textures_with_specular_maps/pattern_241/specular.png" }
+        specularColor 1 1 1
+      }
+    }
+    geometry Box {
+    }
+  }
+}
+
+Transform {
+  translation 6 0 0
+  children Shape {
+    appearance Appearance {
+      material Material {
+        diffuseTexture
+          ImageTexture { url "../images/more_textures_with_specular_maps/pattern_242/diffuse.png" }
+        normalTexture
+          ImageTexture { url "../images/more_textures_with_specular_maps/pattern_242/normal.png" }
+        specularTexture
+          ImageTexture { url "../images/more_textures_with_specular_maps/pattern_242/specular.png" }
+        specularColor 1 1 1
+      }
+    }
+    geometry Box {
+    }
+  }
+}
+
+Transform {
+  translation 9 0 0
+  children Shape {
+    appearance Appearance {
+      material Material {
+        diffuseTexture
+          ImageTexture { url "../images/more_textures_with_specular_maps/pattern_243/diffuse.png" }
+        normalTexture
+          ImageTexture { url "../images/more_textures_with_specular_maps/pattern_243/normal.png" }
+        specularTexture
+          ImageTexture { url "../images/more_textures_with_specular_maps/pattern_243/specular.png" }
+        specularColor 1 1 1
+      }
+    }
+    geometry Box {
+    }
+  }
+}
+
+Transform {
+  translation 12 0 0
+  children Shape {
+    appearance Appearance {
+      material Material {
+        diffuseTexture
+          ImageTexture { url "../images/more_textures_with_specular_maps/pattern_244/diffuse.png" }
+        normalTexture
+          ImageTexture { url "../images/more_textures_with_specular_maps/pattern_244/normal.png" }
+        specularTexture
+          ImageTexture { url "../images/more_textures_with_specular_maps/pattern_244/specular.png" }
+        specularColor 1 1 1
+      }
+    }
+    geometry Box {
+    }
+  }
+}
+
+Transform {
+  translation 0 3 0
+  children [
+    Transform {
+      children Shape {
+        appearance Appearance {
+          material Material {
+            # diffuseTexture
+            #   ImageTexture { url "../images/more_textures_with_specular_maps/pattern_240/diffuse.png" }
+            # normalTexture
+            #   ImageTexture { url "../images/more_textures_with_specular_maps/pattern_240/normal.png" }
+            specularTexture
+              ImageTexture { url "../images/more_textures_with_specular_maps/pattern_240/specular.png" }
+            specularColor 1 1 1
+          }
+        }
+        geometry Box {
+        }
+      }
+    }
+
+    Transform {
+      translation 3 0 0
+      children Shape {
+        appearance Appearance {
+          material Material {
+            # diffuseTexture
+            #   ImageTexture { url "../images/more_textures_with_specular_maps/pattern_241/diffuse.png" }
+            # normalTexture
+            #   ImageTexture { url "../images/more_textures_with_specular_maps/pattern_241/normal.png" }
+            specularTexture
+              ImageTexture { url "../images/more_textures_with_specular_maps/pattern_241/specular.png" }
+            specularColor 1 1 1
+          }
+        }
+        geometry Box {
+        }
+      }
+    }
+
+    Transform {
+      translation 6 0 0
+      children Shape {
+        appearance Appearance {
+          material Material {
+            # diffuseTexture
+            #   ImageTexture { url "../images/more_textures_with_specular_maps/pattern_242/diffuse.png" }
+            # normalTexture
+            #   ImageTexture { url "../images/more_textures_with_specular_maps/pattern_242/normal.png" }
+            specularTexture
+              ImageTexture { url "../images/more_textures_with_specular_maps/pattern_242/specular.png" }
+            specularColor 1 1 1
+          }
+        }
+        geometry Box {
+        }
+      }
+    }
+
+    Transform {
+      translation 9 0 0
+      children Shape {
+        appearance Appearance {
+          material Material {
+            # diffuseTexture
+            #   ImageTexture { url "../images/more_textures_with_specular_maps/pattern_243/diffuse.png" }
+            # normalTexture
+            #   ImageTexture { url "../images/more_textures_with_specular_maps/pattern_243/normal.png" }
+            specularTexture
+              ImageTexture { url "../images/more_textures_with_specular_maps/pattern_243/specular.png" }
+            specularColor 1 1 1
+          }
+        }
+        geometry Box {
+        }
+      }
+    }
+
+    Transform {
+      translation 12 0 0
+      children Shape {
+        appearance Appearance {
+          material Material {
+            # diffuseTexture
+            #   ImageTexture { url "../images/more_textures_with_specular_maps/pattern_244/diffuse.png" }
+            # normalTexture
+            #   ImageTexture { url "../images/more_textures_with_specular_maps/pattern_244/normal.png" }
+            specularTexture
+              ImageTexture { url "../images/more_textures_with_specular_maps/pattern_244/specular.png" }
+            specularColor 1 1 1
+          }
+        }
+        geometry Box {
+        }
+      }
+    }
+  ]
+}
