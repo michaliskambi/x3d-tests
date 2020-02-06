@@ -4,6 +4,9 @@ PROFILE Interactive
 
 # Test normalTexture and Material.
 
+# Turn off headlight, to make the effect of animated light more evident
+NavigationInfo { headlight FALSE }
+
 # ----------------------------------------------------------------------------
 # Prototype: row of geometry with equal Appearance
 
@@ -132,3 +135,44 @@ Transform {
     }
   ]
 }
+
+# animated light source ------------------------------------------------------
+
+DEF MyTimeSensor TimeSensor {
+  loop TRUE
+  cycleInterval 2
+}
+
+DEF MyOrientationInterpolator OrientationInterpolator {
+  key [
+    0
+    0.25
+    0.5
+    0.75
+    1
+  ]
+  keyValue [
+    0 0 1 0,
+    0 0 1 1.57, # 0.5 * pi
+    0 0 1 3.14, # pi
+    0 0 1 4.71, # 1.5 * pi
+    0 0 1 0
+  ]
+}
+
+Transform {
+  translation 5 7.5 0
+  children DEF LightTransform Transform {
+    children Transform {
+      translation 5 0 2
+      children [
+        PointLight {
+        }
+        Shape { geometry Sphere { radius 0.1 } } # for debug
+      ]
+    }
+  }
+}
+
+ROUTE MyTimeSensor.fraction_changed TO MyOrientationInterpolator.set_fraction
+ROUTE MyOrientationInterpolator.value_changed TO LightTransform.rotation
