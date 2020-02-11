@@ -1,0 +1,114 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+# TODO: Specify proper profile/component levels here.
+
+# ----------------------------------------------------------------------------
+# emissiveTexture with emissiveColor = zero -> emissive should have no effect
+
+Shape {
+  appearance Appearance {
+    material Material {
+      emissiveTexture ImageTexture { url "../images/test_texture.png" }
+    }
+  }
+  geometry Sphere {
+  }
+}
+
+# ----------------------------------------------------------------------------
+# emissiveTexture with emissiveColor = yellow, and default diffuseColor
+
+Transform {
+  translation 2 0 0
+  children Shape {
+    appearance Appearance {
+      material Material {
+        emissiveTexture ImageTexture { url "../images/test_texture.png" }
+        emissiveColor 1 1 0
+      }
+    }
+    geometry Sphere {
+    }
+  }
+}
+
+# ----------------------------------------------------------------------------
+# emissiveTexture with emissiveColor = yellow, and diffuseColor = zero
+
+Transform {
+  translation 4 0 0
+  children Shape {
+    appearance Appearance {
+      material Material {
+        # TODO: Without the hack with 0.001, CGE would use diffuseTexture for this,
+        # as it would detect material as "unlit" and apply main_texture over it
+        # (it should instead apply emissiveTexture for unlit).
+        diffuseColor 0 0 0.001
+        emissiveTexture ImageTexture { url "../images/test_texture.png" }
+        emissiveColor 1 1 0
+      }
+    }
+    geometry Sphere {
+    }
+  }
+}
+
+# ----------------------------------------------------------------------------
+# same as above, but with diffuseTexture too
+
+# ----------------------------------------------------------------------------
+# emissiveTexture with emissiveColor = zero -> emissive should have no effect
+
+Transform {
+  translation 0 -2 0
+  children Shape {
+    appearance Appearance {
+      material Material {
+        diffuseTexture ImageTexture { url "../images/leaf.png" }
+        emissiveTexture ImageTexture { url "../images/test_texture.png" }
+      }
+    }
+    geometry Sphere {
+    }
+  }
+}
+
+# ----------------------------------------------------------------------------
+# emissiveTexture with emissiveColor = yellow, and default diffuseColor
+
+Transform {
+  translation 2 -2 0
+  children Shape {
+    appearance Appearance {
+      material Material {
+        diffuseTexture ImageTexture { url "../images/leaf.png" }
+        emissiveTexture ImageTexture { url "../images/test_texture.png" }
+        emissiveColor 1 1 0
+      }
+    }
+    geometry Sphere {
+    }
+  }
+}
+
+# ----------------------------------------------------------------------------
+# emissiveTexture with emissiveColor = yellow, and diffuseColor = zero
+
+Transform {
+  translation 4 -2 0
+  children Shape {
+    appearance Appearance {
+      material Material {
+        # TODO: Without the hack with 0.001, CGE would use diffuseTexture for this,
+        # as it would detect material as "unlit" and apply main_texture over it
+        # (it should instead apply emissiveTexture for unlit).
+        diffuseColor 0 0 0.001
+        diffuseTexture ImageTexture { url "../images/leaf.png" }
+        emissiveTexture ImageTexture { url "../images/test_texture.png" }
+        emissiveColor 1 1 0
+      }
+    }
+    geometry Sphere {
+    }
+  }
+}
