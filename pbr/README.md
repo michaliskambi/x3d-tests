@@ -10,3 +10,8 @@ licensed on Permissive Apache 2.0 license (see the file ../LICENSE in this repo)
 Feel free to modify and reuse.
 Contact me if you'd like an even more open license,
 if it's for the good of Web3D standards -- I'll probablly be OK with this.
+
+Note that x3d_3_interesting_tests/ subdirectory has tests that deal only
+with functionality already present in X3D 3.
+However, it was important to test this functionality,
+to know how should be change X3D 4 to make rendering of some tricky stuff reliable and useful.

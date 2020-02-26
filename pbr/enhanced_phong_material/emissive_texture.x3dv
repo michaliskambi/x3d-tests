@@ -40,10 +40,7 @@ Transform {
   children Shape {
     appearance Appearance {
       material Material {
-        # TODO: Without the hack with 0.001, CGE would use diffuseTexture for this,
-        # as it would detect material as "unlit" and apply main_texture over it
-        # (it should instead apply emissiveTexture for unlit).
-        diffuseColor 0 0 0.001
+        diffuseColor 0 0 0
         emissiveTexture ImageTexture { url "../images/test_texture.png" }
         emissiveColor 1 1 0
       }
@@ -99,11 +96,8 @@ Transform {
   children Shape {
     appearance Appearance {
       material Material {
-        # TODO: Without the hack with 0.001, CGE would use diffuseTexture for this,
-        # as it would detect material as "unlit" and apply main_texture over it
-        # (it should instead apply emissiveTexture for unlit).
-        diffuseColor 0 0 0.001
-        diffuseTexture ImageTexture { url "../images/leaf.png" }
+        diffuseColor 0 0 0
+        diffuseTexture ImageTexture { url "../images/leaf.png" } # RGB of this texture should be ignored, but alpha used
         emissiveTexture ImageTexture { url "../images/test_texture.png" }
         emissiveColor 1 1 0
       }
