@@ -1,0 +1,93 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+# TODO: Specify proper profile/component levels here.
+
+# Simple demo of UnlitMaterial.
+
+# ----------------------------------------------------------------------------
+# UnlitMaterial with emissiveTexture.
+# Shows a yellowish texture.
+
+Shape {
+  appearance Appearance {
+    material UnlitMaterial {
+      emissiveColor 1 1 0
+      emissiveTexture ImageTexture { url "../images/test_texture.png" }
+    }
+    textureTransform TextureTransform {
+      translation 0.5 0.5
+    }
+  }
+  geometry DEF MyGeometry IndexedFaceSet {
+    coordIndex [ 0 1 2 3 ]
+    coord Coordinate {
+      point [
+        0 0 0,
+        1 0 0,
+        1 1 0,
+        0 1 0,
+      ]
+    }
+    texCoord MultiTextureCoordinate {
+      texCoord [
+        TextureCoordinate {
+          point [
+            0 0,
+            4 0,
+            4 4,
+            0 4,
+          ]
+        }
+        # this will be ignored, nothing uses these tex coords now
+        TextureCoordinateGenerator {
+          mode "COORD"
+        }
+      ]
+    }
+  }
+}
+
+# ----------------------------------------------------------------------------
+# UnlitMaterial with Appearance.texture that acts as emissiveTexture.
+# Shows a yellowish texture.
+
+Transform {
+  translation 2 0 0
+  children Shape {
+    appearance Appearance {
+      material UnlitMaterial {
+        emissiveColor 1 1 0
+      }
+      texture ImageTexture { url "../images/test_texture.png" }
+      textureTransform TextureTransform {
+        translation 0.5 0.5
+      }
+    }
+    geometry USE MyGeometry
+  }
+}
+
+# ----------------------------------------------------------------------------
+# Material with only emissiveColor non-zero.
+# Appearance.texture that acts as diffuseTexture in this case.
+# In Phong shading, it will be pure yellow.
+# (In Gouraud, it's yellowish texture - incorrect according to spec, but unavoidable.)
+
+Transform {
+  translation 4 0 0
+  children Shape {
+    appearance Appearance {
+      material Material {
+        emissiveColor 1 1 0
+        diffuseColor 0 0 0
+        specularColor 0 0 0
+        ambientIntensity 0
+      }
+      texture ImageTexture { url "../images/test_texture.png" }
+      textureTransform TextureTransform {
+        translation 0.5 0.5
+      }
+    }
+    geometry USE MyGeometry
+  }
+}
