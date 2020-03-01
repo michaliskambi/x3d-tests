@@ -1,0 +1,200 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+# TODO: Specify proper profile/component levels here.
+
+# Material combined with Color/ColorRGBA nodes.
+
+Background {
+  frontUrl "../images/test_texture.png"
+  backUrl "../images/test_texture.png"
+  leftUrl "../images/test_texture.png"
+  rightUrl "../images/test_texture.png"
+  topUrl "../images/test_texture.png"
+  bottomUrl "../images/test_texture.png"
+}
+
+# ----------------------------------------------------------------------------
+# Material with diffuseColor = yellow and emissiveColor = black.
+# Slightly transparent.
+# Should be yellow when bright (surface orthogonal to camera, since we use headlight),
+# black when dark (surface viewed under angle).
+
+Shape {
+  appearance Appearance {
+    material Material {
+      diffuseColor 1 1 0
+      transparency 0.25
+    }
+  }
+  geometry DEF MyGeometry IndexedFaceSet {
+    coordIndex [ 0 1 2 3 ]
+    coord Coordinate {
+      point [
+        0 0 0,
+        1 0 0,
+        1 1 0,
+        0 1 0,
+      ]
+    }
+    texCoord MultiTextureCoordinate {
+      texCoord [
+        TextureCoordinate {
+          point [
+            0 0,
+            4 0,
+            4 4,
+            0 4,
+          ]
+        }
+      ]
+    }
+  }
+}
+
+# ----------------------------------------------------------------------------
+# Material with diffuseColor = yellow and emissiveColor = blue.
+# Slightly transparent.
+# Should be white when bright (surface orthogonal to camera, since we use headlight),
+# blue when dark (surface viewed under angle).
+
+Transform {
+  translation 2 0 0
+  children Shape {
+    appearance Appearance {
+      material Material {
+        emissiveColor 0 0 1
+        diffuseColor 1 1 0
+        transparency 0.25
+      }
+    }
+    geometry DEF MyGeometry IndexedFaceSet {
+      coordIndex [ 0 1 2 3 ]
+      coord Coordinate {
+        point [
+          0 0 0,
+          1 0 0,
+          1 1 0,
+          0 1 0,
+        ]
+      }
+      texCoord MultiTextureCoordinate {
+        texCoord [
+          TextureCoordinate {
+            point [
+              0 0,
+              4 0,
+              4 4,
+              0 4,
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
+
+# ----------------------------------------------------------------------------
+# Material with diffuseColor = yellow and emissiveColor = blue.
+# diffuseColor is overridden by Color, and is black at bottom / yellow at top.
+# Slightly transparent.
+# In effect:
+# - top should be white when bright (surface orthogonal to camera, since we use headlight),
+#   blue when dark (surface viewed under angle).
+# - bottom should be just blue always.
+
+Transform {
+  translation 4 0 0
+  children Shape {
+    appearance Appearance {
+      material Material {
+        emissiveColor 0 0 1
+        diffuseColor 1 1 0
+        transparency 0.25
+      }
+    }
+    geometry DEF MyGeometry IndexedFaceSet {
+      coordIndex [ 0 1 2 3 ]
+      coord Coordinate {
+        point [
+          0 0 0,
+          1 0 0,
+          1 1 0,
+          0 1 0,
+        ]
+      }
+      texCoord MultiTextureCoordinate {
+        texCoord [
+          TextureCoordinate {
+            point [
+              0 0,
+              4 0,
+              4 4,
+              0 4,
+            ]
+          }
+        ]
+      }
+      color Color {
+        color [
+          0 0 0,
+          0 0 0,
+          1 1 0,
+          1 1 0,
+        ]
+      }
+    }
+  }
+}
+
+# ----------------------------------------------------------------------------
+# Material with diffuseColor = yellow and emissiveColor = blue.
+# diffuseColor is overridden by Color, and is black at bottom / yellow at top.
+# Transparent at left, opaque at right.
+# In effect:
+# - top should be white when bright (surface orthogonal to camera, since we use headlight),
+#   blue when dark (surface viewed under angle).
+# - bottom should be just blue always.
+
+Transform {
+  translation 6 0 0
+  children Shape {
+    appearance Appearance {
+      material Material {
+        emissiveColor 0 0 1
+        diffuseColor 1 1 0
+        transparency 0.25
+      }
+    }
+    geometry DEF MyGeometry IndexedFaceSet {
+      coordIndex [ 0 1 2 3 ]
+      coord Coordinate {
+        point [
+          0 0 0,
+          1 0 0,
+          1 1 0,
+          0 1 0,
+        ]
+      }
+      texCoord MultiTextureCoordinate {
+        texCoord [
+          TextureCoordinate {
+            point [
+              0 0,
+              4 0,
+              4 4,
+              0 4,
+            ]
+          }
+        ]
+      }
+      color ColorRGBA {
+        color [
+          0 0 0 0,
+          0 0 0 1,
+          1 1 0 1,
+          1 1 0 0,
+        ]
+      }
+    }
+  }
+}
