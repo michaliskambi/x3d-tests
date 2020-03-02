@@ -7,7 +7,8 @@ PROFILE Interactive
 Shape {
   appearance Appearance {
     material Material {
-      diffuseTexture ImageTexture { url "../images/synthetic_metal_textures_with_specular_maps/synthetic_metal_06_diffuse.png" }
+      diffuseTexture ImageTexture { url "../images/test_texture.png" }
+                   # ImageTexture { url "../images/synthetic_metal_textures_with_specular_maps/synthetic_metal_06_diffuse.png" }
       # diffuse texture will use the explicit TextureCoordinate node defined below,
       # and the TextureTransform node with translation defined below.
       diffuseTextureChannel 0
