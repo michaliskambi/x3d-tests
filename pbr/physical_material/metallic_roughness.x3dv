@@ -15,6 +15,7 @@ Transform {
       children Shape {
         appearance Appearance {
           material PhysicalMaterial {
+            baseColor 1 1 0
             roughness 0.0
             metallic 0.0
           }
@@ -28,6 +29,7 @@ Transform {
       children Shape {
         appearance Appearance {
           material PhysicalMaterial {
+            baseColor 1 1 0
             roughness 0.0
             metallic 0.5
           }
@@ -41,6 +43,7 @@ Transform {
       children Shape {
         appearance Appearance {
           material PhysicalMaterial {
+            baseColor 1 1 0
             roughness 0.0
             metallic 1
           }
@@ -59,7 +62,8 @@ Transform {
       children Shape {
         appearance Appearance {
           material PhysicalMaterial {
-            roughness 0.5
+            baseColor 1 1 0
+            roughness 0.1
             metallic 0.0
           }
         }
@@ -72,7 +76,8 @@ Transform {
       children Shape {
         appearance Appearance {
           material PhysicalMaterial {
-            roughness 0.5
+            baseColor 1 1 0
+            roughness 0.1
             metallic 0.5
           }
         }
@@ -85,7 +90,8 @@ Transform {
       children Shape {
         appearance Appearance {
           material PhysicalMaterial {
-            roughness 0.5
+            baseColor 1 1 0
+            roughness 0.1
             metallic 1
           }
         }
@@ -103,6 +109,54 @@ Transform {
       children Shape {
         appearance Appearance {
           material PhysicalMaterial {
+            baseColor 1 1 0
+            roughness 0.5
+            metallic 0.0
+          }
+        }
+        geometry Teapot { }
+      }
+    }
+
+    Transform {
+      translation 3 0 0
+      children Shape {
+        appearance Appearance {
+          material PhysicalMaterial {
+            baseColor 1 1 0
+            roughness 0.5
+            metallic 0.5
+          }
+        }
+        geometry Teapot { }
+      }
+    }
+
+    Transform {
+      translation 6 0 0
+      children Shape {
+        appearance Appearance {
+          material PhysicalMaterial {
+            baseColor 1 1 0
+            roughness 0.5
+            metallic 1
+          }
+        }
+        geometry Teapot { }
+      }
+    }
+  ]
+}
+
+Transform {
+  translation 0 -9 0
+  children [
+    Transform {
+      translation 0 0 0
+      children Shape {
+        appearance Appearance {
+          material PhysicalMaterial {
+            baseColor 1 1 0
             roughness 1
             metallic 0.0
           }
@@ -116,6 +170,7 @@ Transform {
       children Shape {
         appearance Appearance {
           material PhysicalMaterial {
+            baseColor 1 1 0
             roughness 1
             metallic 0.5
           }
@@ -129,6 +184,7 @@ Transform {
       children Shape {
         appearance Appearance {
           material PhysicalMaterial {
+            baseColor 1 1 0
             roughness 1
             metallic 1
           }
