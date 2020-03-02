@@ -1,0 +1,140 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+# TODO: Specify proper profile/component levels here.
+
+# PhysicalMaterial testing of roughness, metallic changes.
+# The goal was to create 3x3 shapes arranged just like on
+# - http://xseen.org/XSeen/tests/pbr-envMap.html
+# - https://github.com/michaliskambi/x3d-tests/wiki/What-is-PBR-and-why-do-we-want-it-in-X3D%3F
+
+Transform {
+  translation 0 0 0
+  children [
+    Transform {
+      translation 0 0 0
+      children Shape {
+        appearance Appearance {
+          material PhysicalMaterial {
+            roughness 0.0
+            metallic 0.0
+          }
+        }
+        geometry Teapot { }
+      }
+    }
+
+    Transform {
+      translation 3 0 0
+      children Shape {
+        appearance Appearance {
+          material PhysicalMaterial {
+            roughness 0.0
+            metallic 0.5
+          }
+        }
+        geometry Teapot { }
+      }
+    }
+
+    Transform {
+      translation 6 0 0
+      children Shape {
+        appearance Appearance {
+          material PhysicalMaterial {
+            roughness 0.0
+            metallic 1
+          }
+        }
+        geometry Teapot { }
+      }
+    }
+  ]
+}
+
+Transform {
+  translation 0 -3 0
+  children [
+    Transform {
+      translation 0 0 0
+      children Shape {
+        appearance Appearance {
+          material PhysicalMaterial {
+            roughness 0.5
+            metallic 0.0
+          }
+        }
+        geometry Teapot { }
+      }
+    }
+
+    Transform {
+      translation 3 0 0
+      children Shape {
+        appearance Appearance {
+          material PhysicalMaterial {
+            roughness 0.5
+            metallic 0.5
+          }
+        }
+        geometry Teapot { }
+      }
+    }
+
+    Transform {
+      translation 6 0 0
+      children Shape {
+        appearance Appearance {
+          material PhysicalMaterial {
+            roughness 0.5
+            metallic 1
+          }
+        }
+        geometry Teapot { }
+      }
+    }
+  ]
+}
+
+Transform {
+  translation 0 -6 0
+  children [
+    Transform {
+      translation 0 0 0
+      children Shape {
+        appearance Appearance {
+          material PhysicalMaterial {
+            roughness 1
+            metallic 0.0
+          }
+        }
+        geometry Teapot { }
+      }
+    }
+
+    Transform {
+      translation 3 0 0
+      children Shape {
+        appearance Appearance {
+          material PhysicalMaterial {
+            roughness 1
+            metallic 0.5
+          }
+        }
+        geometry Teapot { }
+      }
+    }
+
+    Transform {
+      translation 6 0 0
+      children Shape {
+        appearance Appearance {
+          material PhysicalMaterial {
+            roughness 1
+            metallic 1
+          }
+        }
+        geometry Teapot { }
+      }
+    }
+  ]
+}
