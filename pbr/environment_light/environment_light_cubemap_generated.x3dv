@@ -13,7 +13,7 @@ PROFILE Interactive
 # and only used to lit another room.
 
 EnvironmentLight {
-  specularImage GeneratedCubeMapTexture { }
+  specularTexture GeneratedCubeMapTexture { }
 }
 
 Inline { url "environment_light_geometry.x3dv" }

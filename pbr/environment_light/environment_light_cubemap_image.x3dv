@@ -10,8 +10,8 @@ PROFILE Interactive
 Group {
   children [
     EnvironmentLight {
-      specularImage DEF MyCubeMap ImageCubeMapTexture {
-        url "images/cubemaps/castle_end_sequence.dds"
+      specularTexture DEF MyCubeMap ImageCubeMapTexture {
+        url "../images/cubemaps/castle_end_sequence.dds"
       }
     }
 
