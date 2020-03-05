@@ -12,3 +12,6 @@ leaf* textures based on
   Attribution-NonCommercial 2.0 Generic (CC BY-NC 2.0)
   https://creativecommons.org/licenses/by-nc/2.0/
   TODO: we need something more permissive for X3D testing (allow also commercial).
+
+cubemaps/from_gltf_viewer/
+  from https://github.com/KhronosGroup/glTF-Sample-Viewer/

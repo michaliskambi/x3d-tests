@@ -1,0 +1,112 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+# TODO: Specify proper profile/component levels here.
+
+# Demo of various EnvironmentLight setups, using glTF-Sample-Viewer environment images.
+
+PROTO EnvironmentLightTest [
+  inputOutput SFVec3f translation 0 0 0
+  inputOutput SFNode diffuseTexture NULL
+  inputOutput SFNode specularTexture NULL
+] {
+  Transform {
+    translation IS translation
+    children [
+      EnvironmentLight {
+        diffuseTexture IS diffuseTexture
+        specularTexture IS specularTexture
+      }
+      Inline { url "environment_light_geometry.x3dv" }
+      Transform {
+        translation 0 -3 0
+        children Shape {
+          appearance Appearance {
+            material UnlitMaterial {
+              emissiveTexture IS diffuseTexture
+            }
+          }
+          geometry Teapot {
+            texCoord TextureCoordinateGenerator {
+              mode "CAMERASPACEREFLECTIONVECTOR"
+            }
+          }
+        }
+      }
+      Transform {
+        translation 3 -3 0
+        children Shape {
+          appearance Appearance {
+            material UnlitMaterial {
+              emissiveTexture IS specularTexture
+            }
+          }
+          geometry Teapot {
+            texCoord TextureCoordinateGenerator {
+              mode "CAMERASPACEREFLECTIONVECTOR"
+            }
+          }
+        }
+      }
+    ]
+  }
+}
+
+EnvironmentLightTest {
+  translation 0 0 0
+  diffuseTexture ComposedCubeMapTexture {
+    back   ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/doge2/diffuse/diffuse_back_0.hdr" }
+    bottom ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/doge2/diffuse/diffuse_bottom_0.hdr" }
+    front  ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/doge2/diffuse/diffuse_front_0.hdr" }
+    left   ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/doge2/diffuse/diffuse_left_0.hdr" }
+    right  ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/doge2/diffuse/diffuse_right_0.hdr" }
+    top    ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/doge2/diffuse/diffuse_top_0.hdr" }
+  }
+  specularTexture ComposedCubeMapTexture {
+    back   ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/doge2/specular/specular_back_0.hdr" }
+    bottom ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/doge2/specular/specular_bottom_0.hdr" }
+    front  ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/doge2/specular/specular_front_0.hdr" }
+    left   ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/doge2/specular/specular_left_0.hdr" }
+    right  ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/doge2/specular/specular_right_0.hdr" }
+    top    ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/doge2/specular/specular_top_0.hdr" }
+  }
+}
+
+EnvironmentLightTest {
+  translation 10 0 0
+  diffuseTexture ComposedCubeMapTexture {
+    back   ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/ennis/diffuse/diffuse_back_0.hdr" }
+    bottom ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/ennis/diffuse/diffuse_bottom_0.hdr" }
+    front  ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/ennis/diffuse/diffuse_front_0.hdr" }
+    left   ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/ennis/diffuse/diffuse_left_0.hdr" }
+    right  ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/ennis/diffuse/diffuse_right_0.hdr" }
+    top    ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/ennis/diffuse/diffuse_top_0.hdr" }
+  }
+  specularTexture ComposedCubeMapTexture {
+    back   ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/ennis/specular/specular_back_0.hdr" }
+    bottom ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/ennis/specular/specular_bottom_0.hdr" }
+    front  ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/ennis/specular/specular_front_0.hdr" }
+    left   ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/ennis/specular/specular_left_0.hdr" }
+    right  ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/ennis/specular/specular_right_0.hdr" }
+    top    ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/ennis/specular/specular_top_0.hdr" }
+  }
+}
+
+EnvironmentLightTest {
+  translation 20 0 0
+  diffuseTexture ComposedCubeMapTexture {
+    back   ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/field/diffuse/diffuse_back_0.hdr" }
+    bottom ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/field/diffuse/diffuse_bottom_0.hdr" }
+    front  ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/field/diffuse/diffuse_front_0.hdr" }
+    left   ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/field/diffuse/diffuse_left_0.hdr" }
+    right  ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/field/diffuse/diffuse_right_0.hdr" }
+    top    ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/field/diffuse/diffuse_top_0.hdr" }
+  }
+  specularTexture ComposedCubeMapTexture {
+    back   ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/field/specular/specular_back_0.hdr" }
+    bottom ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/field/specular/specular_bottom_0.hdr" }
+    front  ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/field/specular/specular_front_0.hdr" }
+    left   ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/field/specular/specular_left_0.hdr" }
+    right  ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/field/specular/specular_right_0.hdr" }
+    top    ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/field/specular/specular_top_0.hdr" }
+  }
+}

@@ -28,6 +28,13 @@ Transform {
     geometry Cone { }
   }
 }
+Transform {
+  translation 7 0 0
+  children Shape {
+    appearance Appearance { material Material { } }
+    geometry Teapot { }
+  }
+}
 
 # some geometry with PBR materials -----------------------------------------
 
@@ -53,6 +60,13 @@ Transform {
       children Shape {
         appearance Appearance { material PhysicalMaterial { } }
         geometry Cone { }
+      }
+    }
+    Transform {
+      translation 7 0 0
+      children Shape {
+        appearance Appearance { material PhysicalMaterial { } }
+        geometry Teapot { }
       }
     }
   ]
