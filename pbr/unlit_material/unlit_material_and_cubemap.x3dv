@@ -1,0 +1,27 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+# TODO: Specify proper profile/component levels here.
+
+# Use ComposedCubeMapTexture with UnlitMaterial.
+
+Shape {
+  appearance Appearance {
+    material UnlitMaterial {
+      emissiveTexture ComposedCubeMapTexture {
+        back   ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/doge2/specular/specular_back_0.hdr" }
+        bottom ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/doge2/specular/specular_bottom_0.hdr" }
+        front  ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/doge2/specular/specular_front_0.hdr" }
+        left   ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/doge2/specular/specular_left_0.hdr" }
+        right  ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/doge2/specular/specular_right_0.hdr" }
+        top    ImageTexture { url "../images/cubemaps/from_gltf_viewer/environments/doge2/specular/specular_top_0.hdr" }
+      }
+    }
+  }
+  geometry Teapot {
+    texCoord TextureCoordinateGenerator {
+      # in CGE, you can use "WORLDSPACEREFLECTIONVECTOR" extension to be even better
+      #mode "WORLDSPACEREFLECTIONVECTOR"
+      mode "CAMERASPACEREFLECTIONVECTOR"
+    }
+  }
+}
