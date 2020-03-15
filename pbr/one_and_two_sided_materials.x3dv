@@ -2,7 +2,7 @@
 PROFILE Interactive
 # TODO: Specify proper profile/component levels here.
 
-# Demo of various options of GenericTwoSidedMaterial
+# Demo of various options of solid and backMaterial
 # when combined with Material and PhysicalMaterial.
 
 # one-sided ------------------------------------------------------------------
@@ -21,7 +21,7 @@ Transform {
             }
           }
           geometry DEF MyGeometry IndexedFaceSet {
-            solid FALSE
+            solid TRUE # one-sided
             coordIndex [ 0 1 2 3 ]
             coord Coordinate {
               point [
@@ -57,10 +57,7 @@ Transform {
         Shape {
           appearance Appearance {
             # unlit yellowish one-sided material
-            material Material {
-              ambientIntensity 0
-              diffuseColor 0 0 0
-              specularColor 0 0 0
+            material UnlitMaterial {
               emissiveColor 1 1 0
             }
           }
@@ -95,13 +92,22 @@ Transform {
         Shape {
           appearance Appearance {
             # Phong yellowish two-sided material
-            material GenericTwoSidedMaterial {
-              front Material {
-                diffuseColor 1 1 0
-              }
+            material Material {
+              diffuseColor 1 1 0
             }
           }
-          geometry USE MyGeometry
+          geometry DEF MyGeometryTwoSided IndexedFaceSet {
+            solid FALSE # two-sided
+            coordIndex [ 0 1 2 3 ]
+            coord Coordinate {
+              point [
+                0 0 0,
+                1 0 0,
+                1 1 0,
+                0 1 0,
+              ]
+            }
+          }
         }
       ]
     }
@@ -112,13 +118,11 @@ Transform {
         Shape {
           appearance Appearance {
             # PBR yellowish two-sided material
-            material GenericTwoSidedMaterial {
-              front PhysicalMaterial {
-                baseColor 1 1 0
-              }
+            material PhysicalMaterial {
+              baseColor 1 1 0
             }
           }
-          geometry USE MyGeometry
+          geometry USE MyGeometryTwoSided
         }
       ]
     }
@@ -129,16 +133,11 @@ Transform {
         Shape {
           appearance Appearance {
             # unlit yellowish one-sided material
-            material GenericTwoSidedMaterial {
-              front Material {
-                ambientIntensity 0
-                diffuseColor 0 0 0
-                specularColor 0 0 0
-                emissiveColor 1 1 0
-              }
+            material UnlitMaterial {
+              emissiveColor 1 1 0
             }
           }
-          geometry USE MyGeometry
+          geometry USE MyGeometryTwoSided
         }
       ]
     }
@@ -148,12 +147,9 @@ Transform {
       children [
         Shape {
           appearance Appearance {
-            # unlit pure white two-sided material
-            material GenericTwoSidedMaterial {
-              front NULL # this is the default value of GenericTwoSidedMaterial.front, actually
-            }
+            material NULL # this is the default value of material, actually
           }
-          geometry USE MyGeometry
+          geometry USE MyGeometryTwoSided
         }
       ]
     }
@@ -171,16 +167,14 @@ Transform {
         Shape {
           appearance Appearance {
             # Phong yellowish/blue two-sided material
-            material GenericTwoSidedMaterial {
-              front Material {
-                diffuseColor 1 1 0
-              }
-              back Material {
-                diffuseColor 0 0 1
-              }
+            material Material {
+              diffuseColor 1 1 0
+            }
+            backMaterial Material {
+              diffuseColor 0 0 1
             }
           }
-          geometry USE MyGeometry
+          geometry USE MyGeometryTwoSided
         }
       ]
     }
@@ -191,16 +185,14 @@ Transform {
         Shape {
           appearance Appearance {
             # PBR yellowish/blue two-sided material
-            material GenericTwoSidedMaterial {
-              front PhysicalMaterial {
-                baseColor 1 1 0
-              }
-              back PhysicalMaterial {
-                baseColor 0 0 1
-              }
+            material PhysicalMaterial {
+              baseColor 1 1 0
+            }
+            backMaterial PhysicalMaterial {
+              baseColor 0 0 1
             }
           }
-          geometry USE MyGeometry
+          geometry USE MyGeometryTwoSided
         }
       ]
     }
@@ -211,22 +203,14 @@ Transform {
         Shape {
           appearance Appearance {
             # unlit yellowish/blue one-sided material
-            material GenericTwoSidedMaterial {
-              front Material {
-                ambientIntensity 0
-                diffuseColor 0 0 0
-                specularColor 0 0 0
-                emissiveColor 1 1 0
-              }
-              front Material {
-                ambientIntensity 0
-                diffuseColor 0 0 0
-                specularColor 0 0 0
-                emissiveColor 0 0 1
-              }
+            material UnlitMaterial {
+              emissiveColor 1 1 0
+            }
+            backMaterial UnlitMaterial {
+              emissiveColor 0 0 1
             }
           }
-          geometry USE MyGeometry
+          geometry USE MyGeometryTwoSided
         }
       ]
     }
