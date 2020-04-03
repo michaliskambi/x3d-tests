@@ -1,0 +1,153 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+# TODO: Specify proper profile/component levels here.
+
+# UnlitMaterial combined with Color/ColorRGBA nodes, using mode="MODULATE".
+# Same as unlit_with_color.x3dv, just with mode="MODULATE".
+
+Background {
+  frontUrl "../images/test_texture.png"
+  backUrl "../images/test_texture.png"
+  leftUrl "../images/test_texture.png"
+  rightUrl "../images/test_texture.png"
+  topUrl "../images/test_texture.png"
+  bottomUrl "../images/test_texture.png"
+}
+
+# ----------------------------------------------------------------------------
+# UnlitMaterial with emissiveColor=yellow and emissiveTexture.
+# Shows a yellowish texture.
+# Slightly transparent.
+
+Shape {
+  appearance Appearance {
+    material UnlitMaterial {
+      emissiveColor 1 1 0
+      emissiveTexture ImageTexture { url "../images/test_texture.png" }
+      transparency 0.5
+    }
+  }
+  geometry DEF MyGeometry IndexedFaceSet {
+    coordIndex [ 0 1 2 3 ]
+    coord Coordinate {
+      point [
+        0 0 0,
+        1 0 0,
+        1 1 0,
+        0 1 0,
+      ]
+    }
+    texCoord MultiTextureCoordinate {
+      texCoord [
+        TextureCoordinate {
+          point [
+            0 0,
+            4 0,
+            4 4,
+            0 4,
+          ]
+        }
+      ]
+    }
+  }
+}
+
+# ----------------------------------------------------------------------------
+# UnlitMaterial with emissiveColor=yellow and emissiveTexture and Color.
+# Shows a blue(top)/white(bottom) texture (emissiveColor value is ignored, Color overrides it).
+# Still slightly transparent.
+
+Transform {
+  translation 2 0 0
+  children Shape {
+    appearance Appearance {
+      material UnlitMaterial {
+        emissiveColor 1 1 0
+        emissiveTexture ImageTexture { url "../images/test_texture.png" }
+        transparency 0.5
+      }
+    }
+    geometry DEF MyGeometry IndexedFaceSet {
+      coordIndex [ 0 1 2 3 ]
+      coord Coordinate {
+        point [
+          0 0 0,
+          1 0 0,
+          1 1 0,
+          0 1 0,
+        ]
+      }
+      texCoord MultiTextureCoordinate {
+        texCoord [
+          TextureCoordinate {
+            point [
+              0 0,
+              4 0,
+              4 4,
+              0 4,
+            ]
+          }
+        ]
+      }
+      color Color {
+        mode "MODULATE"
+        color [
+          1 1 1,
+          1 1 1,
+          0 0 1,
+          0 0 1,
+        ]
+      }
+    }
+  }
+}
+
+# ----------------------------------------------------------------------------
+# UnlitMaterial with emissiveColor=yellow and emissiveTexture and Color.
+# Shows a blue(top)/white(bottom) texture (emissiveColor value is ignored, Color overrides it).
+# Transparent at left, opaque at right.
+
+Transform {
+  translation 4 0 0
+  children Shape {
+    appearance Appearance {
+      material UnlitMaterial {
+        emissiveColor 1 1 0
+        emissiveTexture ImageTexture { url "../images/test_texture.png" }
+        transparency 0.5
+      }
+    }
+    geometry DEF MyGeometry IndexedFaceSet {
+      coordIndex [ 0 1 2 3 ]
+      coord Coordinate {
+        point [
+          0 0 0,
+          1 0 0,
+          1 1 0,
+          0 1 0,
+        ]
+      }
+      texCoord MultiTextureCoordinate {
+        texCoord [
+          TextureCoordinate {
+            point [
+              0 0,
+              4 0,
+              4 4,
+              0 4,
+            ]
+          }
+        ]
+      }
+      color ColorRGBA {
+        mode "MODULATE"
+        color [
+          1 1 1 0,
+          1 1 1 1,
+          0 0 1 1,
+          0 0 1 0,
+        ]
+      }
+    }
+  }
+}
