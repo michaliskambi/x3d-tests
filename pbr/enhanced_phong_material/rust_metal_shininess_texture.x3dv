@@ -12,7 +12,7 @@ Shape {
       # normalTextureParallaxHeight 0.01 # don't use, not a cool effect with this texture
 
       shininess 1
-      shininessTexture ImageTexture { url "../images/rust_metal_textures/metall001-new-contrast.png" }
+      shininessTexture ImageTexture { url "../images/rust_metal_textures/metall001-specular-shininess-combined.png" }
 
       specularColor 1 1 1
     }
