@@ -1,0 +1,199 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+# TODO: Specify proper profile/component levels here.
+
+# Material.occlusionTexture test
+
+Transform {
+  translation 0 0 0
+  children [
+    Transform {
+      rotation 0 1 0 3.14
+      children Inline { url "occlusion_lizardman_nonormals_strength1.x3d" }
+    }
+    Transform {
+      translation 0 15 0
+      children Shape {
+        geometry Text {
+          string [
+            "occlusionTexture"
+            "occlusionStrength = 1"
+            "no normalTexture"
+          ]
+          fontStyle FontStyle {
+            justify "MIDDLE"
+          }
+        }
+      }
+    }
+  ]
+}
+
+Transform {
+  translation 15 0 0
+  children [
+    Transform {
+      rotation 0 1 0 3.14
+      children Inline { url "occlusion_lizardman_nonormals_strength05.x3d" }
+    }
+    Transform {
+      translation 0 15 0
+      children Shape {
+        geometry Text {
+          string [
+            "occlusionTexture"
+            "occlusionStrength = 0.5"
+            "no normalTexture"
+          ]
+          fontStyle FontStyle {
+            justify "MIDDLE"
+          }
+        }
+      }
+    }
+  ]
+}
+
+Transform {
+  translation 30 0 0
+  children [
+    Transform {
+      rotation 0 1 0 3.14
+      children Inline { url "occlusion_lizardman_nonormals_strength0.x3d" }
+    }
+    Transform {
+      translation 0 15 0
+      children Shape {
+        geometry Text {
+          string [
+            "occlusionTexture"
+            "occlusionStrength = 0"
+            "no normalTexture"
+          ]
+          fontStyle FontStyle {
+            justify "MIDDLE"
+          }
+        }
+      }
+    }
+  ]
+}
+
+# with normalTexture --------------------------------------------------------------------
+
+Transform {
+  translation 0 -30 0
+  children [
+    Transform {
+      rotation 0 1 0 3.14
+      children Inline { url "occlusion_lizardman_normals_strength1.x3d" }
+    }
+    Transform {
+      translation 0 15 0
+      children Shape {
+        geometry Text {
+          string [
+            "occlusionTexture"
+            "occlusionStrength = 1"
+            "with normalTexture"
+          ]
+          fontStyle FontStyle {
+            justify "MIDDLE"
+          }
+        }
+      }
+    }
+  ]
+}
+
+Transform {
+  translation 15 -30 0
+  children [
+    Transform {
+      rotation 0 1 0 3.14
+      children Inline { url "occlusion_lizardman_normals_strength05.x3d" }
+    }
+    Transform {
+      translation 0 15 0
+      children Shape {
+        geometry Text {
+          string [
+            "occlusionTexture"
+            "occlusionStrength = 0.5"
+            "with normalTexture"
+          ]
+          fontStyle FontStyle {
+            justify "MIDDLE"
+          }
+        }
+      }
+    }
+  ]
+}
+
+Transform {
+  translation 30 -30 0
+  children [
+    Transform {
+      rotation 0 1 0 3.14
+      children Inline { url "occlusion_lizardman_normals_strength0.x3d" }
+    }
+    Transform {
+      translation 0 15 0
+      children Shape {
+        geometry Text {
+          string [
+            "occlusionTexture"
+            "occlusionStrength = 0"
+            "with normalTexture"
+          ]
+          fontStyle FontStyle {
+            justify "MIDDLE"
+          }
+        }
+      }
+    }
+  ]
+}
+
+
+# animated light source ------------------------------------------------------
+
+DEF MyTimeSensor TimeSensor {
+  loop TRUE
+  cycleInterval 2
+}
+
+DEF MyOrientationInterpolator OrientationInterpolator {
+  key [
+    0
+    0.25
+    0.5
+    0.75
+    1
+  ]
+  keyValue [
+    0 0 1 0,
+    0 0 1 1.57, # 0.5 * pi
+    0 0 1 3.14, # pi
+    0 0 1 4.71, # 1.5 * pi
+    0 0 1 0
+  ]
+}
+
+Transform {
+  translation 15 -10 0
+  children DEF LightTransform Transform {
+    children Transform {
+      translation 20 0 2
+      children [
+        PointLight {
+        }
+        Shape { geometry Sphere { radius 0.1 } } # for debug
+      ]
+    }
+  }
+}
+
+ROUTE MyTimeSensor.fraction_changed TO MyOrientationInterpolator.set_fraction
+ROUTE MyOrientationInterpolator.value_changed TO LightTransform.rotation
