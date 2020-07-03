@@ -36,9 +36,6 @@
 								<PhysicalMaterial DEF="MA_Material_001"
 								          baseColor="1 1 0"
 								          transparency="0.0"
-                                                                          baseTextureChannel="0"
-                                                                          normalTextureChannel="0"
-                                                                          occlusionTextureChannel="0"
                                                                           occlusionStrength="0"
 								>
 									<ImageTexture containerField="occlusionTexture" url='"../images/lizardman_ambient_occlusion.png"' />

@@ -3,13 +3,14 @@ PROFILE Interactive
 # TODO: Specify proper profile/component levels here.
 
 # Simple demo of diffuseTextureMapping.
-# Visible texture should be repeated many times (40) and rotated.
+# Visible texture should be repeated few times (4) and not rotated.
+# The empty mapping value "" has a special meaning, it never matches.
 
 Shape {
   appearance Appearance {
     material Material {
       diffuseTexture ImageTexture { url "../images/test_texture.png" }
-      diffuseTextureMapping "TEXCOORD_1"
+      diffuseTextureMapping ""
     }
 
     textureTransform MultiTextureTransform {
@@ -19,7 +20,7 @@ Shape {
         }
         TextureTransform {
           rotation 0.75
-          mapping "TEXCOORD_1"
+          mapping ""
         }
       ]
     }
@@ -46,7 +47,7 @@ Shape {
           ]
         }
         TextureCoordinate {
-          mapping "TEXCOORD_1"
+          mapping ""
           point [
             0 0,
             40 0,

@@ -6,6 +6,8 @@ PROFILE Interactive
 # The goal was to create 3x3 shapes arranged just like on
 # - http://xseen.org/XSeen/tests/pbr-envMap.html
 # - https://github.com/michaliskambi/x3d-tests/wiki/What-is-PBR-and-why-do-we-want-it-in-X3D%3F
+# Left: metallic 0, right: mettalic 1.
+# Top: roughness 0, bottom: roughness 1.
 
 Transform {
   translation 0 0 0
