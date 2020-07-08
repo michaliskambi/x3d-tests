@@ -1,6 +1,6 @@
 #X3D V4.0 utf8
 PROFILE Interactive
-# TODO: Specify proper profile/component levels here.
+COMPONENT Shape:2
 
 # A few shapes, used by the other environment_light_*.x3dv files.
 # This file is boring, we just make shapes with default Material or PhysicalMaterial.

@@ -1,6 +1,6 @@
 #X3D V4.0 utf8
 PROFILE Interactive
-# TODO: Specify proper profile/component levels here.
+COMPONENT Shape:2
 
 # Use ComposedCubeMapTexture with PhysicalMaterial.
 # Note that glTF doesn't support it (as glTF supports only 2D textures in materials),

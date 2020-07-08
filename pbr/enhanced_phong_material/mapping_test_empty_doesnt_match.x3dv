@@ -1,6 +1,6 @@
 #X3D V4.0 utf8
 PROFILE Interactive
-# TODO: Specify proper profile/component levels here.
+COMPONENT Shape:2
 
 # Simple demo of diffuseTextureMapping.
 # Visible texture should be repeated few times (4) and not rotated.
