@@ -1,0 +1,116 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+
+# Using "mapping" to match textures with texture coordinates/transformations.
+# See https://github.com/michaliskambi/x3d-tests/wiki/How-to-add-PBR-to-X3D%3F#can-we-make-texture-mapping-using-def--use
+
+Shape {
+  appearance DEF MyAppearance Appearance {
+    material DEF MyMaterial Material {
+      diffuseTexture ImageTexture { url "../images/more_textures_with_specular_maps/pattern_240/diffuse.png" }
+      diffuseTextureMapping "diffuse-and-normal-mapping"
+      normalTexture ImageTexture { url "../images/more_textures_with_specular_maps/pattern_240/normal.png" }
+      normalTextureMapping "diffuse-and-normal-mapping"
+      specularTexture ImageTexture { url "../images/more_textures_with_specular_maps/pattern_240/specular.png" }
+      specularTextureMapping "specular-mapping"
+    }
+    textureTransform MultiTextureTransform {
+      textureTransform [
+        TextureTransform {
+          mapping "diffuse-and-normal-mapping"
+          translation 0.5 0.5
+        }
+        TextureTransform {
+          mapping "specular-mapping"
+          translation 0.1 0.1
+        }
+      ]
+    }
+  }
+  geometry DEF MyMesh IndexedFaceSet {
+    coordIndex [ 0 1 2 3 ]
+    coord Coordinate {
+      point [
+        0 0 0,
+        1 0 0,
+        1 1 0,
+        0 1 0,
+      ]
+    }
+    texCoord MultiTextureCoordinate {
+      texCoord [
+        TextureCoordinate {
+          mapping "diffuse-and-normal-mapping"
+          point [
+            0 0,
+            4 0,
+            4 4,
+            0 4,
+          ]
+        }
+        TextureCoordinate {
+          mapping "specular-mapping"
+          point [
+            0.1 0,
+            40 0,
+            4 40,
+            0 4,
+          ]
+        }
+      ]
+    }
+  }
+}
+
+# Then define another shape using MyMaterial.
+Transform {
+  translation 2 0 0
+  children Shape {
+    appearance Appearance {
+      material USE MyMaterial
+      textureTransform MultiTextureTransform {
+        textureTransform [
+          TextureTransform {
+            mapping "diffuse-and-normal-mapping"
+            translation 0 0
+          }
+          TextureTransform {
+            mapping "specular-mapping"
+            scale 2 2
+          }
+        ]
+      }
+    }
+    # different mesh, reusing the same appearance
+    geometry IndexedFaceSet {
+      coordIndex [ 0 1 2 ]
+      coord Coordinate {
+        point [
+          0 0 0,
+          1 0 0,
+          1 1 0,
+        ]
+      }
+      texCoord MultiTextureCoordinate {
+        texCoord [
+          TextureCoordinate {
+            mapping "diffuse-and-normal-mapping"
+            point [
+              0 0,
+              4 0,
+              4 4,
+            ]
+          }
+          TextureCoordinate {
+            mapping "specular-mapping"
+            point [
+              0.1 0,
+              40 0,
+              4 40,
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
