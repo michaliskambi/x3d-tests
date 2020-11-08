@@ -1,0 +1,75 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+COMPONENT Shape:2
+
+# UnlitMaterial with transparency test.
+
+Background {
+  frontUrl "../images/test_texture.png"
+  backUrl "../images/test_texture.png"
+  leftUrl "../images/test_texture.png"
+  rightUrl "../images/test_texture.png"
+  topUrl "../images/test_texture.png"
+  bottomUrl "../images/test_texture.png"
+}
+
+Shape {
+  appearance Appearance {
+    material UnlitMaterial {
+      emissiveColor 0 1 1
+      emissiveTexture ImageTexture { url "../images/test_texture.png" }
+    }
+  }
+  geometry IndexedFaceSet {
+    coordIndex [ 0 1 2 3 ]
+    coord Coordinate {
+      point [
+        0 0 0,
+        1 0 0,
+        1 1 0,
+        0 1 0,
+      ]
+    }
+    texCoord TextureCoordinate {
+      point [
+        0 0,
+        1 0,
+        1 1,
+        0 1,
+      ]
+    }
+  }
+}
+
+Transform {
+  translation 0 0 2
+  children Shape {
+    appearance Appearance {
+      material UnlitMaterial {
+        emissiveColor 1 0 0
+        emissiveTexture ImageTexture { url "../images/test_texture.png" }
+        transparency 0.5
+      }
+      textureTransform TextureTransform { scale 4 4 }
+    }
+    geometry IndexedFaceSet {
+      coordIndex [ 0 1 2 3 ]
+      coord Coordinate {
+        point [
+          -1 -1 0,
+          1 -1 0,
+          1 1 0,
+          -1 1 0,
+        ]
+      }
+      texCoord TextureCoordinate {
+        point [
+          0 0,
+          1 0,
+          1 1,
+          0 1,
+        ]
+      }
+    }
+  }
+}
