@@ -27,7 +27,22 @@ Shape {
     material Material {
       diffuseColor 1 1 0
       specularColor 1 1 1
+#      shininess 0.1
     }
   }
   geometry Teapot { }
+}
+
+Transform {
+  translation 4 0 0
+  children Shape {
+    appearance Appearance {
+      material PhysicalMaterial {
+        baseColor 1 1 0
+        metallic 0.8
+        roughness 0.5
+      }
+    }
+    geometry Teapot { }
+  }
 }
