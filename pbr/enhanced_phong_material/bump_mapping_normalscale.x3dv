@@ -1,0 +1,310 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+COMPONENT Shape:2
+
+# ------------------------------------------------------------------------------
+# Test normalTexture and normalScale.
+# Tests the effect of various normalScale values (0, 0.25, 1, 4)
+# with normalTexture on Material and PhysicalMaterial.
+
+# NavigationInfo -------------------------------------------------------------
+
+# Turn off headlight, to make the effect of animated light more evident
+NavigationInfo { headlight FALSE }
+
+# Various test shapes --------------------------------------------------------
+
+Transform {
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseTexture ImageTexture {
+            url "../images/leaf.png"
+          }
+          normalTexture ImageTexture {
+            url "../images/leaf_normal_map.png"
+          }
+          normalScale 0
+        }
+      }
+      geometry Box { }
+    }
+    Transform {
+      translation 0 1 1
+      children Shape {
+        geometry Text {
+          string [ "Phong Material," "normalScale 0" ]
+          fontStyle FontStyle {
+            size 0.15
+            justify "MIDDLE"
+          }
+        }
+      }
+    }
+  ]
+}
+
+Transform {
+  translation 3 0 0
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseTexture ImageTexture {
+            url "../images/leaf.png"
+          }
+          normalTexture ImageTexture {
+            url "../images/leaf_normal_map.png"
+          }
+          normalScale 0.25
+        }
+      }
+      geometry Box { }
+    }
+    Transform {
+      translation 0 1 1
+      children Shape {
+        geometry Text {
+          string [ "Phong Material," "normalScale 0.25" ]
+          fontStyle FontStyle {
+            size 0.15
+            justify "MIDDLE"
+          }
+        }
+      }
+    }
+  ]
+}
+
+Transform {
+  translation 6 0 0
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseTexture ImageTexture {
+            url "../images/leaf.png"
+          }
+          normalTexture ImageTexture {
+            url "../images/leaf_normal_map.png"
+          }
+        }
+      }
+      geometry Box { }
+    }
+    Transform {
+      translation 0 1 1
+      children Shape {
+        geometry Text {
+          string [ "Phong Material," "normalScale 1 (default)" ]
+          fontStyle FontStyle {
+            size 0.15
+            justify "MIDDLE"
+          }
+        }
+      }
+    }
+  ]
+}
+
+Transform {
+  translation 9 0 0
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseTexture ImageTexture {
+            url "../images/leaf.png"
+          }
+          normalTexture ImageTexture {
+            url "../images/leaf_normal_map.png"
+          }
+          normalScale 4
+        }
+      }
+      geometry Box { }
+    }
+    Transform {
+      translation 0 1 1
+      children Shape {
+        geometry Text {
+          string [ "Phong Material," "normalScale 4" ]
+          fontStyle FontStyle {
+            size 0.15
+            justify "MIDDLE"
+          }
+        }
+      }
+    }
+  ]
+}
+
+Transform {
+  translation 0 3 0
+  children [
+    Shape {
+      appearance Appearance {
+        material PhysicalMaterial {
+          baseTexture ImageTexture {
+            url "../images/leaf.png"
+          }
+          normalTexture ImageTexture {
+            url "../images/leaf_normal_map.png"
+          }
+          normalScale 0
+        }
+      }
+      geometry Box { }
+    }
+    Transform {
+      translation 0 1 1
+      children Shape {
+        geometry Text {
+          string [ "PhysicalMaterial," "normalScale 0" ]
+          fontStyle FontStyle {
+            size 0.15
+            justify "MIDDLE"
+          }
+        }
+      }
+    }
+  ]
+}
+
+Transform {
+  translation 3 3 0
+  children [
+    Shape {
+      appearance Appearance {
+        material PhysicalMaterial {
+          baseTexture ImageTexture {
+            url "../images/leaf.png"
+          }
+          normalTexture ImageTexture {
+            url "../images/leaf_normal_map.png"
+          }
+          normalScale 0.25
+        }
+      }
+      geometry Box { }
+    }
+    Transform {
+      translation 0 1 1
+      children Shape {
+        geometry Text {
+          string [ "PhysicalMaterial," "normalScale 0.25" ]
+          fontStyle FontStyle {
+            size 0.15
+            justify "MIDDLE"
+          }
+        }
+      }
+    }
+  ]
+}
+
+Transform {
+  translation 6 3 0
+  children [
+    Shape {
+      appearance Appearance {
+        material PhysicalMaterial {
+          baseTexture ImageTexture {
+            url "../images/leaf.png"
+          }
+          normalTexture ImageTexture {
+            url "../images/leaf_normal_map.png"
+          }
+        }
+      }
+      geometry Box { }
+    }
+    Transform {
+      translation 0 1 1
+      children Shape {
+        geometry Text {
+          string [ "PhysicalMaterial," "normalScale 1 (default)" ]
+          fontStyle FontStyle {
+            size 0.15
+            justify "MIDDLE"
+          }
+        }
+      }
+    }
+  ]
+}
+
+Transform {
+  translation 9 3 0
+  children [
+    Shape {
+      appearance Appearance {
+        material PhysicalMaterial {
+          baseTexture ImageTexture {
+            url "../images/leaf.png"
+          }
+          normalTexture ImageTexture {
+            url "../images/leaf_normal_map.png"
+          }
+          normalScale 4
+        }
+      }
+      geometry Box { }
+    }
+    Transform {
+      translation 0 1 1
+      children Shape {
+        geometry Text {
+          string [ "PhysicalMaterial," "normalScale 4" ]
+          fontStyle FontStyle {
+            size 0.15
+            justify "MIDDLE"
+          }
+        }
+      }
+    }
+  ]
+}
+
+# animated light source ------------------------------------------------------
+
+DEF MyTimeSensor TimeSensor {
+  loop TRUE
+  cycleInterval 2
+}
+
+DEF MyOrientationInterpolator OrientationInterpolator {
+  key [
+    0
+    0.25
+    0.5
+    0.75
+    1
+  ]
+  keyValue [
+    0 0 1 0,
+    0 0 1 1.57, # 0.5 * pi
+    0 0 1 3.14, # pi
+    0 0 1 4.71, # 1.5 * pi
+    0 0 1 0
+  ]
+}
+
+Transform {
+  translation 5 1.5 0
+  scale 0.75 0.75 1
+  children DEF LightTransform Transform {
+    children Transform {
+      translation 5 0 2
+      children [
+        PointLight {
+        }
+        Shape { geometry Sphere { radius 0.1 } } # for debug
+      ]
+    }
+  }
+}
+
+ROUTE MyTimeSensor.fraction_changed TO MyOrientationInterpolator.set_fraction
+ROUTE MyOrientationInterpolator.value_changed TO LightTransform.rotation
