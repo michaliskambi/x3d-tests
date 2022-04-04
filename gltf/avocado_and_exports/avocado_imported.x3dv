@@ -1,0 +1,11 @@
+#X3D V4.0 utf8
+PROFILE Interchange
+
+Switch {
+  children DEF InlinedAvocado Inline {
+    url "glTF/Avocado.gltf"
+  }
+}
+IMPORT InlinedAvocado.Avocado_2 AS AvocadoMeshes
+IMPORT InlinedAvocado.CastleEncoded_2256_Avocado_d AS AvocadoAppearance
+IMPORT InlinedAvocado.Avocado AS AvocadoTransform
