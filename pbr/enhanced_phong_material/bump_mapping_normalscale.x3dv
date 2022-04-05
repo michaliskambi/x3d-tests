@@ -296,9 +296,10 @@ Transform {
   scale 0.75 0.75 1
   children DEF LightTransform Transform {
     children Transform {
-      translation 5 0 2
+      translation 4 0 2
       children [
         PointLight {
+          intensity 4
         }
         Shape { geometry Sphere { radius 0.1 } } # for debug
       ]
