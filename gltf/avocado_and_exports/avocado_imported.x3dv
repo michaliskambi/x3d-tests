@@ -9,3 +9,137 @@ Switch {
 IMPORT InlinedAvocado.Avocado_2 AS AvocadoMeshes
 IMPORT InlinedAvocado.CastleEncoded_2256_Avocado_d AS AvocadoAppearance
 IMPORT InlinedAvocado.Avocado AS AvocadoTransform
+
+Transform {
+  children [
+    Shape {
+      appearance USE AvocadoAppearance
+      geometry IndexedFaceSet {
+        solid FALSE
+        coordIndex [ 0 1 2 3 ]
+        coord Coordinate {
+          point [
+            -1 -1 0,
+             1 -1 0,
+             1  1 0,
+            -1  1 0,
+          ]
+        }
+        texCoord TextureCoordinate {
+          mapping "TEXCOORD_0"
+          point [
+            0 0,
+            1 0,
+            1 1,
+            0 1,
+          ]
+        }
+      }
+    }
+    Transform {
+      translation 0 1 1
+      children Shape {
+        geometry Text {
+          string [ "IndexedFaceSet" "reusing Avocado appearance" ]
+          fontStyle FontStyle {
+            size 0.10
+            justify [ "MIDDLE" "END" ]
+          }
+        }
+      }
+    }
+  ]
+}
+
+Transform {
+  translation 3 0 0
+  children [
+    Shape {
+      appearance USE AvocadoAppearance
+      geometry Sphere {
+        texCoord TextureCoordinateGenerator {
+          mode "COORD"
+          mapping "TEXCOORD_0"
+        }
+      }
+    }
+    Transform {
+      translation 0 1 1
+      children Shape {
+        geometry Text {
+          string [ "Sphere" "reusing Avocado appearance" ]
+          fontStyle FontStyle {
+            size 0.10
+            justify [ "MIDDLE" "END" ]
+          }
+        }
+      }
+    }
+  ]
+}
+
+Transform {
+  translation 6 0 0
+  children [
+    Transform {
+      translation 0 0 0
+      scale 10 10 10
+      children USE AvocadoTransform
+    }
+    Transform {
+      translation 0 -1 0
+      scale 10 10 10
+      children USE AvocadoTransform
+    }
+    Transform {
+      translation 0 -2 0
+      scale 10 10 10
+      children USE AvocadoTransform
+    }
+    Transform {
+      translation 0 1 1
+      children Shape {
+        geometry Text {
+          string [ "Reusing Avocado transform" ]
+          fontStyle FontStyle {
+            size 0.15
+            justify "MIDDLE"
+          }
+        }
+      }
+    }
+  ]
+}
+
+Transform {
+  translation 9 0 0
+  children [
+    Transform {
+      translation 0 0 0
+      scale 10 10 10
+      children USE AvocadoMeshes
+    }
+    Transform {
+      translation 0 -1 0
+      scale 10 10 10
+      children USE AvocadoMeshes
+    }
+    Transform {
+      translation 0 -2 0
+      scale 10 10 10
+      children USE AvocadoMeshes
+    }
+    Transform {
+      translation 0 1 1
+      children Shape {
+        geometry Text {
+          string [ "Reusing Avocado meshes" ]
+          fontStyle FontStyle {
+            size 0.15
+            justify "MIDDLE"
+          }
+        }
+      }
+    }
+  ]
+}
