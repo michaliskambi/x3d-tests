@@ -9,12 +9,12 @@ Switch {
 IMPORT InlinedAvocado.CastleEncoded_2256_Avocado_d AS AvocadoAppearance
 IMPORT InlinedAvocado.Avocado AS AvocadoTransform
 
-# This no longer works, "Avocado" mesh uses the same name as transform.
-# The names must be unique in glTF to make such reuse work reliably.
-# We used to rename things in CGE, but it was removed -- as it wasn't very reliable
-# from user POV (what gets _2 suffix etc.), see discussion at
-# https://github.com/castle-engine/castle-engine/blob/master/src/scene/load/README_node_names_at_import.md .
-# IMPORT InlinedAvocado.Avocado_2 AS AvocadoMeshes
+# "Avocado" name is non-unique in glTF.
+# Accessing "Avocado" or "Avocado_2" is possible, but discouraged:
+# order of renames is not guaranteed.
+# See https://castle-engine.io/gltf#unique_names .
+
+IMPORT InlinedAvocado.Avocado_2 AS AvocadoMeshes
 
 Transform {
   children [
@@ -117,36 +117,35 @@ Transform {
   ]
 }
 
-# This no longer works, see above comments at AvocadoMeshes
-# Transform {
-#   translation 9 0 0
-#   children [
-#     Transform {
-#       translation 0 0 0
-#       scale 10 10 10
-#       children USE AvocadoMeshes
-#     }
-#     Transform {
-#       translation 0 -1 0
-#       scale 10 10 10
-#       children USE AvocadoMeshes
-#     }
-#     Transform {
-#       translation 0 -2 0
-#       scale 10 10 10
-#       children USE AvocadoMeshes
-#     }
-#     Transform {
-#       translation 0 1 1
-#       children Shape {
-#         geometry Text {
-#           string [ "Reusing Avocado meshes" ]
-#           fontStyle FontStyle {
-#             size 0.15
-#             justify "MIDDLE"
-#           }
-#         }
-#       }
-#     }
-#   ]
-# }
+Transform {
+  translation 9 0 0
+  children [
+    Transform {
+      translation 0 0 0
+      scale 10 10 10
+      children USE AvocadoMeshes
+    }
+    Transform {
+      translation 0 -1 0
+      scale 10 10 10
+      children USE AvocadoMeshes
+    }
+    Transform {
+      translation 0 -2 0
+      scale 10 10 10
+      children USE AvocadoMeshes
+    }
+    Transform {
+      translation 0 1 1
+      children Shape {
+        geometry Text {
+          string [ "Reusing Avocado meshes" ]
+          fontStyle FontStyle {
+            size 0.15
+            justify "MIDDLE"
+          }
+        }
+      }
+    }
+  ]
+}
