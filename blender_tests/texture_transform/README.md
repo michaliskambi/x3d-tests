@@ -12,6 +12,8 @@ Tests, in the order that (seems to Michalis) to reflect the complexity of the pr
 
     I suggest to start working (on the X3D exporter support for texture transforms) from making sure / fixing this testcase, as it's the simplest one.
 
+    TODO: The rendering of the corresponding glTF version (in `texture_transforms_on_base_texture.glb`) by [Castle Model Viewer](https://castle-engine.io/castle-model-viewer) is wrong at _"Texture rotate"_ test. Is this a bug of [Castle Model Viewer](https://castle-engine.io/castle-model-viewer) , or Blender -> glTF exporter? Unknown. Strangely, https://gltf-viewer.donmccurdy.com/ and https://github.khronos.org/glTF-Sample-Viewer-Release/ fail to open textures inside, so we cannot compare. This is a TODO for Michalis to investigate. Don't let this stop Blender -> X3D development: naturally, for Blender -> X3D exporter, the "target" is what Blender displays, and it doesn't really matter what glTF / Castle Model Viewer do.
+
 - `castle_fps_game_level/level.blend`: Real-life example of using texture trasformations in a game level.
 
     This is a subset of the real model of the level used in [examples/fps_game/](https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game) example from _Castle Game Engine_, we removed most of the level except 2 "floating terrains" and a bridge. We also removed (from the test here) a [special X3D effect we used there to blend 2 textures on a terrain together](https://github.com/castle-engine/castle-engine/blob/master/examples/fps_game/data/level/terrain_multi_texture.x3dv).
