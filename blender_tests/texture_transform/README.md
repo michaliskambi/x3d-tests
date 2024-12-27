@@ -24,6 +24,8 @@ Each Blender sample has an accompanying:
 
 - TODO: Screenshots, from Blender and Castle Model Viewer, which should be equivalent.
 
+We use a few textures to test this. See [textures/](textures/) subdirectory and the [texture authors](textures/AUTHORS.md).
+
 ## TODO: 3D textures
 
 - Blender and X3D (unlike glTF) support also 3D textures. They can be defined e.g. in [KTX](https://castle-engine.io/ktx) or [DDS](https://castle-engine.io/dds) texture files.
