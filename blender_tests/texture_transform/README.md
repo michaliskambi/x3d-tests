@@ -6,13 +6,19 @@ Testing texture transformations in Blender, to make sure that X3D exporter expor
 
 Note that it is practically impossible to support all the features of Blender in X3D or glTF, we don't really hope to support everything -- just the most common node setups.
 
-Tests:
+Tests, in the order that (seems to Michalis) to reflect the complexity of the problem:
 
-- texture_transforms_on_base_texture: various transformations of the _base_ texture.
+- `texture_transforms_on_base_texture.blend`: various transformations of the _base_ texture.
+
+    I suggest to start working (on the X3D exporter support for texture transforms) from making sure / fixing this testcase, as it's the simplest one.
+
+- `castle_fps_game_level/level.blend`: Real-life example of using texture trasformations in a game level.
+
+    This is a subset of the real model of the level used in [examples/fps_game/](https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game) example from _Castle Game Engine_, we removed most of the level except 2 "floating terrains" and a bridge. We also removed (from the test here) a [special X3D effect we used there to blend 2 textures on a terrain together](https://github.com/castle-engine/castle-engine/blob/master/examples/fps_game/data/level/terrain_multi_texture.x3dv).
+
+    After the cuts, the "feature" tested by this is actually really simple, it just uses Blender "Mapping" node to scale texture coordinates 200x for both base and normalmap textures. The usage just in a more "real-life" context.
 
 - TODO: multiple_textures: multiple textures (base, normalmap, metallic/roughness) used and transformed.
-
-- TODO: sample from fps_game?
 
 - TODO: sample from glTF sample assets?
 
@@ -22,7 +28,7 @@ Each Blender sample has an accompanying:
 
 - TODO: A "desired" X3D file. This is is crafted by hand, in a text editor (search "Michalis" to find my modifications in X3D file done by hand). This is how it should look like in X3D, to achieve the same effect as we see in Blender and glTF. The goal is to make sure that our Blender->X3D exporter produces the equivalent X3D file as the "desired" one.
 
-- TODO: Screenshots, from Blender and Castle Model Viewer, which should be equivalent.
+- TODO: Screenshots, from Blender (rendering and node setup) and _Castle Model Viewer_ (which should show equivalent rendering for glTF and "desired" X3D file).
 
 We use a few textures to test this. See [textures/](textures/) subdirectory and the [texture authors](textures/AUTHORS.md).
 
