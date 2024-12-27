@@ -18,17 +18,25 @@ Tests, in the order that (seems to Michalis) to reflect the complexity of the pr
 
     This is a subset of the real model of the level used in [examples/fps_game/](https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game) example from _Castle Game Engine_, we removed most of the level except 2 "floating terrains" and a bridge. We also removed (from the test here) a [special X3D effect we used there to blend 2 textures on a terrain together](https://github.com/castle-engine/castle-engine/blob/master/examples/fps_game/data/level/terrain_multi_texture.x3dv).
 
-    After the cuts, the "feature" tested by this is actually really simple, it just uses Blender "Mapping" node to scale texture coordinates 200x for both base and normalmap textures. The usage just in a more "real-life" context.
+    After the cuts, the "feature" tested by this is actually really simple, it just uses Blender "Mapping" node to scale texture coordinates 200x for both base and normalmap textures.
+
+    So this testcase is still rather simple. The usage presented here is just in a more "real-life" context than `texture_transforms_on_base_texture.blend`.
 
 - TODO: multiple_textures: multiple textures (base, normalmap, metallic/roughness) used and transformed.
 
 Each Blender sample has an accompanying:
 
-- TODO: glTF file produced by Blender's glTF exporter. [Castle Model Viewer](https://castle-engine.io/castle-model-viewer) renders them OK, showing that Blender, glTF exporter and CGE work correctly together.
+- glTF file produced by Blender's glTF exporter, in `xxx.glb` file.
 
-- TODO: A "desired" X3D file. This is is crafted by hand, in a text editor (search "Michalis" to find my modifications in X3D file done by hand). This is how it should look like in X3D, to achieve the same effect as we see in Blender and glTF. The goal is to make sure that our Blender->X3D exporter produces the equivalent X3D file as the "desired" one.
+    [Castle Model Viewer](https://castle-engine.io/castle-model-viewer) renders them OK, showing that Blender, glTF exporter and CGE work correctly together. They are exported to self-contained `.glb` files, so you can view them in any glTF viewer, including online https://gltf-viewer.donmccurdy.com/ and https://github.khronos.org/glTF-Sample-Viewer-Release/ .
 
-- TODO: Screenshots, from Blender (rendering and node setup) and _Castle Model Viewer_ (which should show equivalent rendering for glTF and "desired" X3D file).
+- TODO: A "desired" X3D file in `xxx_desired.x3d`.
+
+    This is is crafted by hand, in a text editor (search "Michalis" to find my modifications in X3D file done by hand). This is how it should look like in X3D, to achieve the same effect as we see in Blender and glTF. The goal is to make sure that our Blender->X3D exporter produces the equivalent X3D file as the "desired" one.
+
+- Screenshot from Blender (rendering and node setup) in `xxx_blender.png`.
+
+- Screenshot from [Castle Model Viewer](https://castle-engine.io/castle-model-viewer) showing the glTF file, in `xxx_gltf_castle.png`. This should be equivalent to the "desired" X3D file rendering.
 
 We use a few textures to test this. See [textures/](textures/) subdirectory and the [texture authors](textures/AUTHORS.md).
 
