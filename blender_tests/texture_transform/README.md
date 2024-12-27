@@ -20,8 +20,6 @@ Tests, in the order that (seems to Michalis) to reflect the complexity of the pr
 
 - TODO: multiple_textures: multiple textures (base, normalmap, metallic/roughness) used and transformed.
 
-- TODO: sample from glTF sample assets?
-
 Each Blender sample has an accompanying:
 
 - TODO: glTF file produced by Blender's glTF exporter. [Castle Model Viewer](https://castle-engine.io/castle-model-viewer) renders them OK, showing that Blender, glTF exporter and CGE work correctly together.
@@ -53,3 +51,9 @@ It's documented what Blender->glTF exporter supports, see [glTF exporter docs, s
 Note that glTF only supports 2D textures, so their choice of above settings makes sense (no way to support e.g. rotation in X or Y). The same applies to X3D when we use only `TextureTransform` node.
 
 But in X3D, we could express full power of Blender's "Mapping" node by the `TextureTransform3D` node (from X3D _Texturing3D_ component).
+
+See also glTF testcases (note: I didn't find Blender sources for them, I don't know if they were created in Blender at all):
+
+- https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/TextureTransformTest
+
+- https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/TextureTransformMultiTest
