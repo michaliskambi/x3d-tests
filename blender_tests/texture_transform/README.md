@@ -1,36 +1,52 @@
-# Texture transformations in Blender, to test Blender -> X3D exporter
+# Texture transformations in Blender, to implement in Blender -> X3D exporter
 
 ## Overview
 
-Testing texture transformations in Blender, to make sure that X3D exporter exports them correctly. The most important Blender feature here is the ["Mapping"](https://docs.blender.org/manual/en/latest/render/shader_nodes/vector/mapping.html) node combined with _"UV Map"_. When used with 2D textures, it should result in X3D node `TextureTransform` with proper settings (sometimes it can be placed directly in `Appearance.textureTransform`, sometimes it has to be one of items within `MultiTextureTransform`).
+Tests of texture transformations in Blender, to make sure that X3D exporter exports them correctly.
 
-Note that it is practically impossible to support all the features of Blender in X3D or glTF, we don't really hope to support everything -- just the most common node setups.
+- The most important Blender feature here is the ["Mapping"](https://docs.blender.org/manual/en/latest/render/shader_nodes/vector/mapping.html) node combined with _"UV Map"_.
+
+- When used with 2D textures, it should result in X3D node `TextureTransform` with proper settings. Usually `TextureTransform` can be placed directly in `Appearance.textureTransform`, though in some hard cases `TextureTransform` has to be one of items within `MultiTextureTransform`, and then `MultiTextureTransform` goes to `Appearance.textureTransform`.
+
+- For 3D textures, we should use `TextureTransform3D` node from X3D _Texturing3D_ component. This is capable of expressing all the settings of Blender's "Mapping" node.
+
+Note that it is practically impossible to support all the features of Blender nodes in X3D (or glTF, for that matter). So we don't really hope to support everything -- just the most common node setups. I tried to demonstrate them here.
+
+## Testcases
 
 Tests, in the order that (seems to Michalis) to reflect the complexity of the problem:
 
-- `texture_transforms_on_base_texture.blend`: various transformations of the _base_ texture.
+### Transform the "base" texture in various ways (scale, rotate, translate)
 
-    I suggest to start working (on the X3D exporter support for texture transforms) from making sure / fixing this testcase, as it's the simplest one.
+`texture_transforms_on_base_texture.blend`: various transformations of the _base_ texture.
 
-    TODO: The rendering of the corresponding glTF version (in `texture_transforms_on_base_texture.glb`) by [Castle Model Viewer](https://castle-engine.io/castle-model-viewer) is wrong at _"Texture rotate"_ test. Is this a bug of [Castle Model Viewer](https://castle-engine.io/castle-model-viewer) , or Blender -> glTF exporter? Unknown. Strangely, https://gltf-viewer.donmccurdy.com/ and https://github.khronos.org/glTF-Sample-Viewer-Release/ fail to open textures inside, so we cannot compare. This is a TODO for Michalis to investigate. Don't let this stop Blender -> X3D development: naturally, for Blender -> X3D exporter, the "target" is what Blender displays, and it doesn't really matter what glTF / Castle Model Viewer do.
+I suggest to start working (on the X3D exporter support for texture transforms) from this testcase, as it's the simplest one.
 
-- `castle_fps_game_level/level.blend`: Real-life example of using texture trasformations in a game level.
+TODO: The rendering of the corresponding glTF version (in `texture_transforms_on_base_texture.glb`) by [Castle Model Viewer](https://castle-engine.io/castle-model-viewer) is wrong at _"Texture rotate"_ test. Is this a bug of [Castle Model Viewer](https://castle-engine.io/castle-model-viewer) , or Blender -> glTF exporter? Unknown. Strangely, https://gltf-viewer.donmccurdy.com/ and https://github.khronos.org/glTF-Sample-Viewer-Release/ fail to open textures inside, so we cannot compare. This is a TODO for Michalis to investigate. Don't let this stop Blender -> X3D development: naturally, for Blender -> X3D exporter, the "target" is what Blender displays, and it doesn't really matter what glTF / Castle Model Viewer do.
 
-    This is a subset of the real model of the level used in [examples/fps_game/](https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game) example from _Castle Game Engine_, we removed most of the level except 2 "floating terrains" and a bridge. We also removed (from the test here) a [special X3D effect we used there to blend 2 textures on a terrain together](https://github.com/castle-engine/castle-engine/blob/master/examples/fps_game/data/level/terrain_multi_texture.x3dv).
+### Real-life example of using texture trasformations in a game level
 
-    After the cuts, the "feature" tested by this is actually really simple, it just uses Blender "Mapping" node to scale texture coordinates 200x for both base and normalmap textures.
+`castle_fps_game_level/level.blend`: Real-life example of using texture trasformations in a game level.
 
-    So this testcase is still rather simple. The usage presented here is just in a more "real-life" context than `texture_transforms_on_base_texture.blend`.
+This is a subset of the real model of the level used in [examples/fps_game/](https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game) example from _Castle Game Engine_, we removed most of the level except 2 "floating terrains" and a bridge. We also removed (from the test here) a [special X3D effect we used there to blend 2 textures on a terrain together](https://github.com/castle-engine/castle-engine/blob/master/examples/fps_game/data/level/terrain_multi_texture.x3dv).
 
-- multiple_textures: multiple textures (base, normalmap, metallic/roughness) used and transformed.
+After the cuts, the "feature" tested by this is actually really simple, it just uses Blender "Mapping" node to scale texture coordinates 200x for both base and normalmap textures.
 
-    Shows transforming all textures  (base, normalmap, metallic/roughness) in the same way.
+So this testcase is still rather simple. The usage presented here is just in a more "real-life" context than `texture_transforms_on_base_texture.blend`.
 
-    Shows what happens when some textures are transformed differently than others. (This will require `MultiTextureTransform` in X3D and managing which transform affects what with `mapping`).
+### Transform base, normal, metallic and roughness textures in same or different ways
 
-    This is a more complex testcase. Especially the case when we have different transformations for different textures is hard, and at the same it's a really rare use-case. So support for this is absolutely optional.
+`multiple_textures.blend`: multiple textures (base, normalmap, metallic/roughness) used and transformed.
 
-    TODO: [Castle Model Viewer](https://castle-engine.io/castle-model-viewer) rendering of this is not good, so I don't attach it here. One bug is wrong rotations (see also above). Another bug is inability to account for different transformations of different texture slots. I am also not 100% sure whether the generated glTF is OK, [glTF Sample Viewer](https://github.khronos.org/glTF-Sample-Viewer-Release/) reports problems with it.
+Shows transforming all textures  (base, normalmap, metallic/roughness) in the same way.
+
+Shows what happens when some textures are transformed differently than others. (This will require `MultiTextureTransform` in X3D and managing which transform affects what with `mapping`).
+
+This is a more complex testcase. Especially the case when we have different transformations for different textures is hard, and at the same it's a really rare use-case. So support for this is absolutely optional.
+
+TODO: [Castle Model Viewer](https://castle-engine.io/castle-model-viewer) rendering of this is not good, so I don't attach it here. One bug is wrong rotations (see also above). Another bug is inability to account for different transformations of different texture slots. I am also not 100% sure whether the generated glTF is OK, [glTF Sample Viewer](https://github.khronos.org/glTF-Sample-Viewer-Release/) reports problems with it.
+
+## Files accompanying each testcase
 
 Each Blender sample has an accompanying:
 
