@@ -6,9 +6,9 @@ Tests of texture transformations in Blender, to make sure that X3D exporter expo
 
 - The most important Blender feature here is the ["Mapping"](https://docs.blender.org/manual/en/latest/render/shader_nodes/vector/mapping.html) node combined with _"UV Map"_.
 
-- When used with 2D textures, it should result in X3D node `TextureTransform` with proper settings. Usually `TextureTransform` can be placed directly in `Appearance.textureTransform`, though in some hard cases `TextureTransform` has to be one of items within `MultiTextureTransform`, and then `MultiTextureTransform` goes to `Appearance.textureTransform`.
+- Usually (when used to make typical transformations meaningful for 2D texture coordinates), it should result in X3D node `TextureTransform` with proper settings. Usually `TextureTransform` can be placed directly in `Appearance.textureTransform`, though in some hard cases `TextureTransform` has to be one of items within `MultiTextureTransform`, and then `MultiTextureTransform` goes to `Appearance.textureTransform`.
 
-- For 3D textures, we should use `TextureTransform3D` node from X3D _Texturing3D_ component. This is capable of expressing all the settings of Blender's "Mapping" node.
+- In complex cases, we may need to use `TextureTransform3D` node from X3D _Texturing3D_ component. This is capable of expressing all the settings of Blender's "Mapping" node. It makes most sense for 3D textures (more on them in later section).
 
 Note that it is practically impossible to support all the features of Blender nodes in X3D (or glTF, for that matter). So we don't really hope to support everything -- just the most common node setups. I tried to demonstrate them here.
 
@@ -42,9 +42,9 @@ Shows transforming all textures  (base, normalmap, metallic/roughness) in the sa
 
 Shows what happens when some textures are transformed differently than others. (This will require `MultiTextureTransform` in X3D and managing which transform affects what with `mapping`).
 
-This is a more complex testcase. Especially the case when we have different transformations for different textures is hard, and at the same it's a really rare use-case. So support for this is absolutely optional.
+This is a more complex testcase. Especially the case when we have different transformations for different textures is hard. It's also a really rare use-case. So support for this is absolutely optional.
 
-TODO: [Castle Model Viewer](https://castle-engine.io/castle-model-viewer) rendering of this is not good, so I don't attach it here. One bug is wrong rotations (see also above). Another bug is inability to account for different transformations of different texture slots. I am also not 100% sure whether the generated glTF is OK, [glTF Sample Viewer](https://github.khronos.org/glTF-Sample-Viewer-Release/) reports problems with it.
+TODO: [Castle Model Viewer](https://castle-engine.io/castle-model-viewer) rendering of this is not good, so I don't attach it here. One bug is wrong rotations (see also above). Another issue is inability to account for different transformations of different texture slots (this is known, simply not implemented in _Castle Game Engine_ glTF -> X3D conversion, and makes warnings _"Textures within material have different texture transformation, not supported now"_). I am also not 100% sure whether the generated glTF is OK, [glTF Sample Viewer](https://github.khronos.org/glTF-Sample-Viewer-Release/) reports problems with it.
 
 ## Files accompanying each testcase
 
@@ -52,7 +52,7 @@ Each Blender sample has an accompanying:
 
 - glTF file produced by Blender's glTF exporter, in `xxx.glb` file.
 
-    [Castle Model Viewer](https://castle-engine.io/castle-model-viewer) renders them OK, showing that Blender, glTF exporter and CGE work correctly together. They are exported to self-contained `.glb` files, so you can view them in any glTF viewer, including online https://gltf-viewer.donmccurdy.com/ and https://github.khronos.org/glTF-Sample-Viewer-Release/ .
+    [Castle Model Viewer](https://castle-engine.io/castle-model-viewer) renders them OK (except TODOs mentioned above...), showing that Blender, glTF exporter and CGE work correctly together. They are exported to self-contained `.glb` files, so you can view them in any glTF viewer, including online https://gltf-viewer.donmccurdy.com/ and https://github.khronos.org/glTF-Sample-Viewer-Release/ (except they don't load some glTF files, see above...).
 
 - TODO: A "desired" X3D file in `xxx_desired.x3d`.
 
@@ -66,13 +66,13 @@ We use a few textures to test this. See [textures/](textures/) subdirectory and 
 
 ## TODO: 3D textures
 
-- Blender and X3D (unlike glTF) support also 3D textures. They can be defined e.g. in [KTX](https://castle-engine.io/ktx) or [DDS](https://castle-engine.io/dds) texture files.
+Blender and X3D (unlike glTF) support also 3D textures. They can be defined e.g. in [KTX](https://castle-engine.io/ktx) or [DDS](https://castle-engine.io/dds) texture files.
 
-    We should test capabilities of Blender to export 3D textures, and test transforming them too. This will also make all the settings of ["Mapping"](https://docs.blender.org/manual/en/latest/render/shader_nodes/vector/mapping.html) node useful.
+We should test capabilities of Blender to export 3D textures, and test transforming them too. This will also make all the settings of ["Mapping"](https://docs.blender.org/manual/en/latest/render/shader_nodes/vector/mapping.html) node useful.
 
-## Note: What does Blender->glTF exporter support?
+## What does Blender->glTF exporter support?
 
-IMHO (Michalis) Blender->X3D exporter should support _at least_ similar Blender nodes setup as the Blender->glTF exporter. Because that's what I would expect as a user -- Khronos already did the hard work of consulting what artists want, and what is possible to export with reasonable effort. Ideally, X3D exporter can follow it, or support even more (see "3D textures" notes).
+IMHO Blender->X3D exporter should support _at least_ similar Blender nodes setup as the Blender->glTF exporter. Because that's what I would expect as a user -- Khronos already did the hard work of consulting what artists want, and what is possible to export with reasonable effort (for glTF, but it should be mostly similar for X3D). Ideally, X3D exporter can follow it, or support even more (see "3D textures" notes).
 
 It's documented what Blender->glTF exporter supports, see [glTF exporter docs, section "UV Mapping"](https://docs.blender.org/manual/en/dev/addons/import_export/scene_gltf2.html#uv-mapping):
 
@@ -91,3 +91,13 @@ See also glTF testcases (note: I didn't find Blender sources for them, I don't k
 - https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/TextureTransformTest
 
 - https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/TextureTransformMultiTest
+
+## Copyright and license
+
+Made by [Michalis Kamburelis](https://michalis.xyz/). License: public domain.
+
+Except:
+
+- Note that some textures have different authors and licenses: [textures/AUTHORS.md](textures/AUTHORS.md).
+
+- `castle_fps_game_level/` stuff follows the [CGE license](https://castle-engine.io/license) for examples, which is permissive "modified BSD (3-clause)".

@@ -15,3 +15,7 @@ Additional files:
 - `monkey_ambient_occlusion_gltf_sample_viewer.png` is a screenshot from [glTF Sample Viewer](https://github.khronos.org/glTF-Sample-Viewer-Release/) showing the glTF file.
 
     The _Castle Model Viewer_ and _glTF Sample Viewer_ show the same result, so the viewers are likely correct (and missing blue at "Blue unlit, per-vertex colors" case is a bug in Blender -> glTF exporter).
+
+## Copyright and license
+
+Made by [Michalis Kamburelis](https://michalis.xyz/). License: public domain.
