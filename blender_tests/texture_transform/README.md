@@ -22,7 +22,15 @@ Tests, in the order that (seems to Michalis) to reflect the complexity of the pr
 
     So this testcase is still rather simple. The usage presented here is just in a more "real-life" context than `texture_transforms_on_base_texture.blend`.
 
-- TODO: multiple_textures: multiple textures (base, normalmap, metallic/roughness) used and transformed.
+- multiple_textures: multiple textures (base, normalmap, metallic/roughness) used and transformed.
+
+    Shows transforming all textures  (base, normalmap, metallic/roughness) in the same way.
+
+    Shows what happens when some textures are transformed differently than others. (This will require `MultiTextureTransform` in X3D and managing which transform affects what with `mapping`).
+
+    This is a more complex testcase. Especially the case when we have different transformations for different textures is hard, and at the same it's a really rare use-case. So support for this is absolutely optional.
+
+    TODO: [Castle Model Viewer](https://castle-engine.io/castle-model-viewer) rendering of this is not good, so I don't attach it here. One bug is wrong rotations (see also above). Another bug is inability to account for different transformations of different texture slots. I am also not 100% sure whether the generated glTF is OK, [glTF Sample Viewer](https://github.khronos.org/glTF-Sample-Viewer-Release/) reports problems with it.
 
 Each Blender sample has an accompanying:
 
