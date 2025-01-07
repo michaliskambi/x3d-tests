@@ -1,0 +1,40 @@
+1. simple animation (keyframes -> object location/rotation/scale)
+
+2. skinned animation in blender (*most* used workflow for animating)
+
+  A. create a mesh (with materials + textures)
+
+  B. rigging ( https://en.wikipedia.org/wiki/Skeletal_animation )
+    create "armature == skeleton" (bunch of bones / joints)
+    connect skeleton to mesh (assign vertices to bones)
+    end result: stil static, but with useful "controls"
+      "control" = bone/joint
+      //"control" = advanced : blender "driver" (not discussed here)
+
+  C. animating, create animation(s) that move/rotate
+    the bones/joints
+    - walk
+    - run
+    - jump
+    - idle / breath / stand in place
+    - ...
+
+  MakeHuman (maybe, I don't know MakeHuman) https://static.makehumancommunity.org/mpfb.html
+  does A and B?
+
+  Mixamo https://www.mixamo.com/#/
+  does C
+
+  A,B,C - you just do it yourself
+    - or rather: you have people who do A,B,C
+
+-----------------
+clear
+Alt + s - scale
+Alt + r - rotate
+Alt + g - location
+
+-----------------
+1 Action = 1 TimeSensor (x3d)
+  move_around
+  MyScene.PlayAnimation('move_around')
