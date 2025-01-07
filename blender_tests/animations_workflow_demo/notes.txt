@@ -1,5 +1,10 @@
 1. simple animation (keyframes -> object location/rotation/scale)
 
+  Demo files:
+  - simplest_animate_objects_rigid.blend
+  - exported to glTF simplest_animate_objects_rigid.glb,
+    animation plays OK in castle-model-viewer
+
 2. skinned animation in blender (*most* used workflow for animating)
 
   A. create a mesh (with materials + textures)
@@ -27,6 +32,11 @@
 
   A,B,C - you just do it yourself
     - or rather: you have people who do A,B,C
+
+  Demo files:
+  - skinned_animation_from_scratch.blend
+  - exported to glTF in skinned_animation_from_scratch.glb,
+    animation plays OK in castle-model-viewer
 
 -----------------
 clear
