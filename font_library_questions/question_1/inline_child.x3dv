@@ -1,0 +1,11 @@
+#X3D V4.0 utf8
+PROFILE Interactive
+
+Shape {
+  Text {
+    string ["Hello World from inline child!"]
+    fontStyle FontStyle {
+      family "my custom family name in parent"
+    }
+  }
+}
