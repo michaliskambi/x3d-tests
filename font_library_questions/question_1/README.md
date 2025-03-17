@@ -16,7 +16,7 @@ Note that answering yes, while it may seem expected, means:
 
 - and if the answer is yes, what is the order when multiple `FontLibrary` nodes define the same family name?
 
-## Spec Decision
+## Specification Discussion
 
 Quoting [mail from Don Brutzman](https://web3d.org/pipermail/x3d-public_web3d.org/2025-March/021370.html) on 2025-03-07:
 
