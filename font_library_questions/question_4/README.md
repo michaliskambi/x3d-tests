@@ -10,7 +10,9 @@ Should it have an effect when rendering "Hello World from inline parent!"?
 
 I think *no*, following how `Fog` affects inlined content. `Fog` in the parent affects the inlined content, but `Fog` in child does not affect parent. But then, `Fog` is a "bindable node" so it has its own mechanism altogether, it's not that simple analogy.
 
-## Answer from Don
+## Spec Decision
+
+Quoting [mail from Don Brutzman](https://web3d.org/pipermail/x3d-public_web3d.org/2025-March/021370.html) on 2025-03-07:
 
 Looks similar to question 2, using ExternProtoDeclare/ProtoInstance rather than Inline.  (But very tricky!  thanks!)
 

@@ -16,7 +16,9 @@ Note that answering yes, while it may seem expected, means:
 
 - and if the answer is yes, what is the order when multiple `FontLibrary` nodes define the same family name?
 
-## Answer from Don
+## Spec Decision
+
+Quoting [mail from Don Brutzman](https://web3d.org/pipermail/x3d-public_web3d.org/2025-March/021370.html) on 2025-03-07:
 
 rephrased: does a child scene, Inlined by a parent scene, have access to FontLibrary fonts defined in the parent?
 
@@ -27,6 +29,6 @@ rephrased: does a child scene, Inlined by a parent scene, have access to FontLib
   - Escape hatch: if someone is really keen to share fonts upwards out of the Inline scene, it is likely possible to do so via EXPORT/IMPORT mechanisms.
 - Summary:  downward scope to descendant models.
 
-## Michalis summary of Don's answer
+## Michalis summary of above answer
 
 FontLibrary in parent affects the child.

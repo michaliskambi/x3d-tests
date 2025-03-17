@@ -10,7 +10,9 @@ Should it have an effect when rendering "Hello World from inline parent!"?
 
 I think *no*, following how `Fog` affects inlined content. `Fog` in the parent affects the inlined content, but `Fog` in child does not affect parent. But then, `Fog` is a "bindable node" so it has its own mechanism altogether, it's not that simple analogy.
 
-## Answer from Don
+## Spec Decision
+
+Quoting [mail from Don Brutzman](https://web3d.org/pipermail/x3d-public_web3d.org/2025-March/021370.html) on 2025-03-07:
 
 rephrased: does a parent scene, which includes a child Inline scene, have access to FontLibrary fonts defined in the child?
 
@@ -19,8 +21,7 @@ rephrased: does a parent scene, which includes a child Inline scene, have access
 - Important consideration for parent-child scene relationships is that the author of a child scene might have no idea that a parent scene has included it as an inline.
 - We do not think that FontLibrary should be an X3DBindableNode (like Fog, Viewpoint, Background etc.)  However if an implementer wants to use a stack internally to implement such downward-looking scope, that is up to them.
 
-## Michalis summary of Don's answer
-
+## Michalis summary of above answer
 
 OK, agreed. That is, FontLibrary in child *does not* affect the parent.
 
